@@ -1,6 +1,6 @@
 import React from "react";
 import {StatusBar} from "expo-status-bar";
-import {View} from "react-native";
+import {View, StyleSheet,Text} from "react-native";
 
 const Login = () => {
     return (
