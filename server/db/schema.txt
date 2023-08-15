@@ -1,0 +1,148 @@
+CREATE TABLE "Spaceship" (
+  "ship_id" uuid,
+  "seat_count" INT,
+  "name" VARCHAR(20),
+  "type" VARCHAR(20),
+  PRIMARY KEY ("ship_id")
+);
+
+CREATE TABLE "User" (
+  "user_id" uuid,
+  "name" VARCHAR(50),
+  "uid_number" VARCHAR(50),
+  "points" INT,
+  PRIMARY KEY ("user_id")
+);
+
+CREATE TABLE "crypto_wallet" (
+  "wallet_id" UUID,
+  "user_id" UUID,
+  PRIMARY KEY ("wallet_id"),
+  CONSTRAINT "FK_crypto_wallet.user_id"
+    FOREIGN KEY ("user_id")
+      REFERENCES "User"("user_id")
+);
+
+CREATE TABLE "stored_cards" (
+  "card_number" UUID,
+  "user_id" UUID,
+  "expiry_month" SMALLINT,
+  "expiry_year" YEAR,
+  "cvn" INT,
+  PRIMARY KEY ("card_number"),
+  CONSTRAINT "FK_stored_cards.card_number"
+    FOREIGN KEY ("card_number")
+      REFERENCES "User"("user_id")
+);
+
+CREATE TABLE "Credentials" (
+  "user_id" uuid,
+  "password_hash" VARCHAR(50),
+  "username" VARCHAR(50),
+  "user_type" VARCHAR(20),
+  PRIMARY KEY ("user_id")
+);
+
+CREATE TABLE "memory" (
+  "memory_id" uuid,
+  "user_id" uuid,
+  "likes" INT,
+  PRIMARY KEY ("memory_id"),
+  CONSTRAINT "FK_memory.user_id"
+    FOREIGN KEY ("user_id")
+      REFERENCES "User"("user_id")
+);
+
+CREATE TABLE "Images" (
+  "image_id" uuid,
+  "memory_id" uuid,
+  "image_uri" VARCHAR(50),
+  PRIMARY KEY ("image_id"),
+  CONSTRAINT "FK_Images.memory_id"
+    FOREIGN KEY ("memory_id")
+      REFERENCES "memory"("memory_id")
+);
+
+CREATE TABLE "Planet" (
+  "planet_id" uuid,
+  "description" VARCHAR(50),
+  "Field" Type,
+  PRIMARY KEY ("planet_id")
+);
+
+CREATE INDEX "Key" ON  "Planet" ("Field");
+
+CREATE TABLE "Spacestation" (
+  "space_station_id" uuid,
+  "planet_id" uuid,
+  PRIMARY KEY ("space_station_id"),
+  CONSTRAINT "FK_Spacestation.space_station_id"
+    FOREIGN KEY ("space_station_id")
+      REFERENCES "Planet"("planet_id")
+);
+
+CREATE TABLE "Payment" (
+  "payment_id" uuid,
+  "mode" VARCHAR(20),
+  "price" DOUBLE PRECISION,
+  "order_id" uuid,
+  PRIMARY KEY ("payment_id")
+);
+
+CREATE TABLE "Order" (
+  "order_id" uuid,
+  "user_id" uuid,
+  "order_time" timestamp,
+  "order_type" VARCHAR(20),
+  "booking_id" uuid,
+  PRIMARY KEY ("order_id"),
+  CONSTRAINT "FK_Order.user_id"
+    FOREIGN KEY ("user_id")
+      REFERENCES "User"("user_id")
+);
+
+CREATE TABLE "local_destination" (
+  "local_dest_id" UUID,
+  "name" VARCHAR(50),
+  "Location" VARCHAR(75),
+  "planet_id" VARCHAR(50),
+  "local_description" VARCHAR(50),
+  PRIMARY KEY ("local_dest_id"),
+  CONSTRAINT "FK_local_destination.planet_id"
+    FOREIGN KEY ("planet_id")
+      REFERENCES "Planet"("planet_id")
+);
+
+CREATE TABLE "Booking" (
+  "booking_id" uuid,
+  "ship_id" uuid,
+  "starting_id" uuid,
+  "end_id" uuid,
+  "starting_time" timestamp,
+  PRIMARY KEY ("booking_id"),
+  CONSTRAINT "FK_Booking.starting_id"
+    FOREIGN KEY ("starting_id")
+      REFERENCES "local_destination"("local_dest_id"),
+  CONSTRAINT "FK_Booking.end_id"
+    FOREIGN KEY ("end_id")
+      REFERENCES "local_destination"("local_dest_id"),
+  CONSTRAINT "FK_Booking.ship_id"
+    FOREIGN KEY ("ship_id")
+      REFERENCES "Spaceship"("ship_id")
+);
+
+CREATE TABLE "Ticket" (
+  "ticket_id" uuid,
+  "booking_id" uuid,
+  "price" DOUBLE PRECISION,
+  "seat_num" INT,
+  "order_id" uuid,
+  PRIMARY KEY ("ticket_id"),
+  CONSTRAINT "FK_Ticket.order_id"
+    FOREIGN KEY ("order_id")
+      REFERENCES "Order"("order_id"),
+  CONSTRAINT "FK_Ticket.booking_id"
+    FOREIGN KEY ("booking_id")
+      REFERENCES "Booking"("booking_id")
+);
+
