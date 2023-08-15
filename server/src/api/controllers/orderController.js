@@ -18,10 +18,11 @@ const one_way = async (req, res) => {
   //   return res.send({ approved: false })
   // }
 
-  if (travel_modes.)
-}
+  if (travel_modes){}
+
 
 const round_trip = async (req, res) => {
+
   console.log("Registration function")
 }
 
@@ -30,3 +31,4 @@ const multi_trip = async (req, res) => {
 }
 
 module.exports = { one_way, round_trip, multi_trip }
+}
