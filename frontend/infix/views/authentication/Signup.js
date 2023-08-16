@@ -47,14 +47,16 @@ const Signup = ({navigation}) => {
                 </View>
                 <KeyboardAvoidingView style={styles.container}>
                     <View style={styles.inputContainer}>
-                        <AuthInput placeholder="Universal ID" action={setUniversalId} value={universalId} secureTextEntry={false}/>
+                        <AuthInput placeholder="Universal ID" action={setUniversalId} value={universalId}
+                                   secureTextEntry={false}/>
                         <AuthInput placeholder="Email" action={setEmail} value={email} secureTextEntry={false}/>
                         <AuthInput placeholder="Full Name" action={setName} value={name} secureTextEntry={false}/>
                         <AuthInput placeholder="Password" action={setPassword} value={password} secureTextEntry={true}/>
-                        <AuthInput placeholder="Confirm Password" action={setConfirmPassword} value={confirmPassword} secureTextEntry={true}/>
+                        <AuthInput placeholder="Confirm Password" action={setConfirmPassword} value={confirmPassword}
+                                   secureTextEntry={true}/>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <AuthButton text="Login" action={handleSignup}/>
+                        <AuthButton text="Sign Up" action={handleSignup}/>
                     </View>
                 </KeyboardAvoidingView>
                 <Image style={styles.Logo} source={Logo}/>
@@ -130,7 +132,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
 
     },
-    signupLink:{
+    signupLink: {
         color: '#fff',
         fontSize: 15,
         fontWeight: 'bold',

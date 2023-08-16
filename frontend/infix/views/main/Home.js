@@ -40,8 +40,10 @@ const Home = () => {
                     <View><Text style={styles.headertextwelcome}>Welcome</Text>
                         <Text style={styles.headertext}>Josh Peter</Text>
                     </View>
-                    <TouchableOpacity><Ionicons name="chatbubble-ellipses-outline" size={32}
-                                                color="white"/></TouchableOpacity>
+                    <TouchableOpacity>
+                        <Ionicons name="chatbubble-ellipses-outline" size={32}
+                                                color="white"/>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={styles.buttonsContainer}>
@@ -139,11 +141,14 @@ const styles = StyleSheet.create({
     buttons: {
         width: '35%',
         height: '45%',
-        backgroundColor: '#dbe9f5',
+        backgroundColor: '#a9b6c4',
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: 10,
+        borderStyle: 'solid',
+        borderWidth: 3,
+        borderColor: '#ffffff',
 
     },
     buttonsText: {
