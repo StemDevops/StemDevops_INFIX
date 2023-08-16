@@ -9,9 +9,12 @@ import {
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import bg from "../assets/home_bg.png";
+import { Picker } from "@react-native-picker/picker";
+import InputTextField from "../components/InputTextField";
 
 const TravelScreen = ({ navigation }) => {
   const [buttonClicked, setButtonClicked] = useState("Single");
+  const [selectedValue, setSelectedValue] = useState("option1");
 
   const handleButtonClickSingle = () => {
     setButtonClicked("Single");
@@ -69,8 +72,8 @@ const TravelScreen = ({ navigation }) => {
 
         <View style={styles.bodyContainer}>
           {buttonClicked === "Single" && (
-            <View style={styles.bodyContainerStyle}>
-              <Text>This is single trip</Text>
+            <View>
+              <InputTextField></InputTextField>
             </View>
           )}
           {buttonClicked === "Round" && (
@@ -169,6 +172,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#FFFFFF",
     opacity: 0.9,
+  },
+  label: {
+    fontSize: 18,
+    marginBottom: 8,
+  },
+  selectedValue: {
+    marginTop: 16,
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 
