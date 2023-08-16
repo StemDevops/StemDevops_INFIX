@@ -1,4 +1,4 @@
-const { getUserHash, comparePassword } = require("../services/userService.js")
+const { getUserHash, comparePassword , createUser} = require("../services/userService.js")
 
 const login = async (req, res) => {
   const username = req.body.username
@@ -23,10 +23,17 @@ const login = async (req, res) => {
 }
 
 const register = async (req, res) => {
+  
   console.log("Registration function")
   const username = req.body.username
   const password = req.body.password
+  const userType = req.body.userType
   
+  const newUser = await createUser(username, password,userType)
+  if(newUser){
+    console.log("Registration successful")
+    return res.send({ approved: true })
+  }
 }
 
 module.exports = { login, register }

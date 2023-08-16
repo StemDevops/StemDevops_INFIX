@@ -20,10 +20,16 @@ model Booking {
 }
 
 model Credentials {
-  user_id       String  @id @db.Uuid
+  user_id       UUID    @id @default(dbgenerated()) @db.UUID
   password_hash String? @db.VarChar(75)
   username      String? @db.VarChar(50)
   user_type     String? @db.VarChar(20)
+}
+enum userType{
+  ADMIN
+  MANAGER
+  TRAVELLER
+  
 }
 
 model Images {

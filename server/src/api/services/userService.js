@@ -18,5 +18,19 @@ const getUserHash = async (username) => {
 const comparePassword = async (password, hash) => {
   return await bcrypt.compare(password, hash)
 }
+const createUser = async (username, password, userType) => {
+  const saltRounds = 10
+  const salt = await bcrypt.genSalt(saltRounds)
+  const hash = await bcrypt.hash(password, salt)
 
-module.exports = { getUserHash, comparePassword }
+  const user = await prisma.credentials.create({
+    data: {
+      username: username,
+      password_hash: hash,
+      user_type: userType,
+    },
+  })
+
+  return user
+}
+module.exports = { getUserHash, comparePassword , createUser}
