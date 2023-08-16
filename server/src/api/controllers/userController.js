@@ -1,4 +1,4 @@
-const { getUserHash, comparePassword , createUser} = require("../services/userService.js")
+const {  createCard} = require("../services/userService.js")
 
 const login = async (req, res) => {
   const username = req.body.username
