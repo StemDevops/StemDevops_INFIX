@@ -24,6 +24,9 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   console.log("Registration function")
+  const username = req.body.username
+  const password = req.body.password
+  
 }
 
 module.exports = { login, register }
