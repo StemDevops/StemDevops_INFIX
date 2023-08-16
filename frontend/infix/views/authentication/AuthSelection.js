@@ -12,9 +12,20 @@ const AuthSelection = ({navigation}) => {
     }
 
     const goToSignup = () => {
-        console.log('signup')
+        navigation.navigate('Signup');
     }
 
+    const loginWithFacebook = () => {
+        console.log('facebook')
+    }
+
+    const loginWithGoogle = () => {
+        console.log('google')
+    }
+
+    const loginWithApple = () => {
+        console.log('apple')
+    }
 
     return (
         <ImageBackground source={bg} resizeMode="cover" style={styles.image}>
@@ -29,9 +40,9 @@ const AuthSelection = ({navigation}) => {
                     <AuthButton text="Signup" action={goToSignup}/>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <SocialButton text="Continue with Faceook" action={goToLogin} bgcolor="#1877F2" logo="logo-facebook" color="#fff"/>
-                    <SocialButton text="Continue with Google" action={goToLogin} bgcolor="#fff" logo="logo-google" color="#000"/>
-                    <SocialButton text="Continue with Apple ID" action={goToLogin} bgcolor="#000" logo="logo-apple" color="#fff"/>
+                    <SocialButton text="Continue with Faceook" action={loginWithFacebook} bgcolor="#1877F2" logo="logo-facebook" color="#fff"/>
+                    <SocialButton text="Continue with Google" action={loginWithGoogle} bgcolor="#fff" logo="logo-google" color="#000"/>
+                    <SocialButton text="Continue with Apple ID" action={loginWithApple} bgcolor="#000" logo="logo-apple" color="#fff"/>
                 </View>
                 <Image style={styles.Logo} source={Logo}/>
             </SafeAreaView>
