@@ -2,7 +2,7 @@ import React from "react";
 import {StatusBar} from "expo-status-bar";
 import {View, StyleSheet, Text} from "react-native";
 
-const SignUp = () => {
+const Signup = () => {
     return (
         <View style={styles.container}>
             <Text>SignUp</Text>
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SignUp;
+export default Signup;

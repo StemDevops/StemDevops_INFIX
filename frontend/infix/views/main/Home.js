@@ -81,8 +81,7 @@ const Home = () => {
                     <View style={styles.section}>
                         <Text style={styles.sectionHeading}>Latest Offers</Text>
                         <View style={styles.hscroll}>
-                            {/*<CardHorizontal imageSource={cardimg} title={"Earth"} style={styles.cardHorizontal}/>*/}
-                            {/*<CardHorizontal imageSource={cardimg} title={"Earth"} style={styles.cardHorizontal}/>*/}
+
                             {latest_offers ? latest_offers.map((item) => {
                                 return <CardHorizontal imageSource={item.image} title={item.title}
                                              style={styles.cardHorizontal} key={item.id}/>
@@ -156,10 +155,10 @@ const styles = StyleSheet.create({
     vscroll: {
         width: '100%',
         marginTop: 10,
+        marginBottom: 30,
     },
     section: {
         width: '100%',
-        color: '#fff',
     },
     sectionHeading: {
         color: '#fff',
