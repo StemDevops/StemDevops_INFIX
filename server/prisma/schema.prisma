@@ -7,6 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model Credentials {
   universal_id  String  @id @db.VarChar(50)
   password_hash String? @db.VarChar(50)
@@ -22,6 +23,7 @@ model Images {
 }
 
 model Order {
+
   order_id     String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   universal_id String?   @db.VarChar(50)
   order_time   DateTime? @db.Timestamp(6)
@@ -29,6 +31,7 @@ model Order {
   mode         String?   @db.VarChar(20)
   ticket_count Int?
   User         User?     @relation(fields: [universal_id], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Order.universal_id")
+
   Ticket       Ticket[]
 }
 
@@ -54,6 +57,7 @@ model Spacestation {
 }
 
 model Ticket {
+
   ticket_id  String             @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   booking_id String?            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   seat_num   Int?
