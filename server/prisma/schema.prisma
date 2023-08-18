@@ -9,9 +9,9 @@ datasource db {
 
 model Available_Booking {
   booking_id                                                         String             @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  ship_id                                                            String?            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  starting_id                                                        String?            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  end_id                                                             String?            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  ship_id                                                            String?            @db.Uuid
+  starting_id                                                        String?            @db.Uuid
+  end_id                                                             String?            @db.Uuid
   starting_time                                                      DateTime?          @db.Timestamp(6)
   local_destination_Available_Booking_end_idTolocal_destination      local_destination? @relation("Available_Booking_end_idTolocal_destination", fields: [end_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.end_id")
   Spaceship                                                          Spaceship?         @relation(fields: [ship_id], references: [ship_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.ship_id")
@@ -23,8 +23,8 @@ model Available_Booking {
 
 model Booking_spaceship {
   ship_type                                                          ship_type
-  starting_id                                                        String            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  end_id                                                             String            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  starting_id                                                        String            @db.Uuid
+  end_id                                                             String            @db.Uuid
   price                                                              Float?
   local_destination_Booking_spaceship_end_idTolocal_destination      local_destination @relation("Booking_spaceship_end_idTolocal_destination", fields: [end_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Booking-spaceship.end_id")
   local_destination_Booking_spaceship_starting_idTolocal_destination local_destination @relation("Booking_spaceship_starting_idTolocal_destination", fields: [starting_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Booking-spaceship.starting_id")
@@ -86,9 +86,9 @@ model Spacestation {
 
 model Ticket {
   ticket_id         String             @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  booking_id        String?            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  booking_id        String?            @db.Uuid
   seat_num          Int?
-  order_id          String?            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  order_id          String?            @db.Uuid
   Available_Booking Available_Booking? @relation(fields: [booking_id], references: [booking_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Ticket.booking_id")
   Order             Order?             @relation(fields: [order_id], references: [order_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Ticket.order_id")
 }
@@ -103,7 +103,7 @@ model local_destination {
   local_dest_id                                                      String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   name                                                               String?             @db.VarChar(50)
   Location                                                           String?             @db.VarChar(75)
-  planet_id                                                          String?             @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  planet_id                                                          String?             @db.Uuid
   local_description                                                  String?             @db.VarChar(50)
   Available_Booking_Available_Booking_end_idTolocal_destination      Available_Booking[] @relation("Available_Booking_end_idTolocal_destination")
   Available_Booking_Available_Booking_starting_idTolocal_destination Available_Booking[] @relation("Available_Booking_starting_idTolocal_destination")

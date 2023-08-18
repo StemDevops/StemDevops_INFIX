@@ -18,6 +18,6 @@ const createTicket = async (booking_id, seat_num, order_id) => {
     
   })
 
-  return user
+  return ticket
 }
 module.exports = { createTicket}
