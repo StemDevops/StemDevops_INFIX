@@ -7,7 +7,9 @@ import profile from "../assets/profile.png";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default HelpCenter = ({ navigation }) => {
+    
     const [UID, setUID] = useState('123456789ABCD');
+
     return (
         <ImageBackground source={bg} resizeMode="cover" style={styles.image}>
             <SafeAreaView style={styles.container}>
@@ -104,11 +106,6 @@ const styles = StyleSheet.create({
     headertextwelcome: {
         color: '#fff',
         fontSize: 25,
-        fontWeight: 'bold',
-    },
-    headertext: {
-        color: '#fff',
-        fontSize: 20,
         fontWeight: 'bold',
     },
     headerBtnContainer: {
