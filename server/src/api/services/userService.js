@@ -1,6 +1,7 @@
 
 const { PrismaClient } = require("@prisma/client")
 const bcrypt = require("bcrypt")
+
 const prisma = new PrismaClient()
 
 
@@ -30,9 +31,12 @@ const createUser = async (username, password, userType,universal_id) => {
       username: username,
       password_hash: hash,
       user_type: userType,
+      points: 0,
     },
   })
 
   return user
 }
 module.exports = { getUserHash, comparePassword , createUser}
+
+
