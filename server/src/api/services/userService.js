@@ -1,6 +1,7 @@
+
 const { PrismaClient } = require("@prisma/client")
 const bcrypt = require("bcrypt")
-
+const userContext = require("./UserContext")
 const prisma = new PrismaClient()
 
 const getUserHash = async (username) => {
