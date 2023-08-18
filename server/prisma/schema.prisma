@@ -8,8 +8,8 @@ datasource db {
 }
 
 model Credentials {
-  user_id       String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  password_hash String? @db.VarChar(75)
+  universal_id  String  @id @db.VarChar(50)
+  password_hash String? @db.VarChar(50)
   username      String? @db.VarChar(50)
   user_type     String? @db.VarChar(20)
 }
@@ -23,12 +23,12 @@ model Images {
 
 model Order {
   order_id     String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  user_id      String?   @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  universal_id String?   @db.VarChar(50)
   order_time   DateTime? @db.Timestamp(6)
   order_type   String?   @db.VarChar(20)
   mode         String?   @db.VarChar(20)
   ticket_count Int?
-  User         User?     @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Order.user_id")
+  User         User?     @relation(fields: [universal_id], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Order.universal_id")
   Ticket       Ticket[]
 }
 
@@ -63,9 +63,8 @@ model Ticket {
 }
 
 model User {
-  user_id       String          @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  universal_id  String          @id @db.VarChar(50)
   name          String?         @db.VarChar(50)
-  uid_number    String?         @db.VarChar(50)
   points        Int?
   Order         Order[]
   crypto_wallet crypto_wallet[]
@@ -74,9 +73,9 @@ model User {
 }
 
 model crypto_wallet {
-  wallet_id String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  user_id   String? @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  User      User?   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_crypto_wallet.user_id")
+  wallet_id    String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  universal_id String? @db.VarChar(50)
+  User         User?   @relation(fields: [universal_id], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_crypto_wallet.universal_id")
 }
 
 model local_destination {
@@ -93,20 +92,20 @@ model local_destination {
 }
 
 model memory {
-  memory_id String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  user_id   String?  @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  likes     Int?
-  Images    Images[]
-  User      User?    @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_memory.user_id")
+  memory_id    String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  universal_id String?  @db.VarChar(50)
+  likes        Int?
+  Images       Images[]
+  User         User?    @relation(fields: [universal_id], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_memory.universal_id")
 }
 
 model stored_cards {
-  card_number  String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  user_id      String? @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  card_number  String  @id @db.Char(16)
+  universal_id String? @db.VarChar(50)
   expiry_month Int?    @db.SmallInt
   expiry_year  Int?
   cvn          Int?
-  User         User    @relation(fields: [card_number], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_stored_cards.card_number")
+  User         User    @relation(fields: [card_number], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_stored_cards.card_number")
 }
 
 model Available_Booking {
