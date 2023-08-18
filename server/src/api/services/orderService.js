@@ -6,19 +6,20 @@ const prisma = new PrismaClient()
 
 
 
-const createOrder = async (username, password, userType) => {
-  const saltRounds = 10
-  const salt = await bcrypt.genSalt(saltRounds)
-  const hash = await bcrypt.hash(password, salt)
+const createOrder = async (universal_id, order_time, order_type, mode, ticket_count) => {
+  
 
-  const user = await prisma.credentials.create({
+  const order = await prisma.order.create({
     data: {
-      username: username,
-      password_hash: hash,
-      user_type: userType,
+      universal_id: universal_id,
+      order_time: order_time,
+      order_type: order_type,
+      mode: mode,
+      ticket_count: ticket_count,
     },
+    
   })
 
   return user
 }
-module.exports = { createUser}
+module.exports = { createOrder}
