@@ -43,7 +43,7 @@ model Spaceship {
   ship_id           String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   seat_count        Int?
   name              String?             @db.VarChar(20)
-  ship_type         String?             @db.VarChar(20)
+  ship_type         ship_type?
   Available_Booking Available_Booking[]
 }
 
@@ -123,7 +123,7 @@ model Available_Booking {
 }
 
 model Booking_spaceship {
-  ship_type                                                          String            @db.VarChar(20)
+  ship_type                                                          ship_type
   starting_id                                                        String            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   end_id                                                             String            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   price                                                              Float?
@@ -132,4 +132,10 @@ model Booking_spaceship {
 
   @@id([ship_type, starting_id, end_id])
   @@map("Booking-spaceship")
+}
+
+enum ship_type {
+  SPACE_BUS    @map("SPACE BUS")
+  HELICARRIER
+  HYPER_DRIVES @map("HYPER DRIVES")
 }
