@@ -4,11 +4,11 @@ import { Platform } from 'react-native';
 
 import bg from "../assets/Notifications_bg.png";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import profile from "../assets/profile.png";
+import planetPic from "../assets/card2.jpg";
 
-export default NotificationsScreen = ({ navigation }) => {
-  const [notiHeader, setNotiHeader] = useState('Susan Robert');
-  const [noti, setNoti] = useState('Susan Robert likes your memory on Moon001');
+export default Tickets = ({ navigation }) => {
+  const [travelTo, settravelTo] = useState('Moon 001');
+  const [details, setdetails] = useState('Susan Robert likes your memory on Moon001');
   
   const gotoBack = () => {
     navigation.navigate('Home');
@@ -24,19 +24,24 @@ export default NotificationsScreen = ({ navigation }) => {
               </TouchableOpacity>
             </View>
             <View>
-              <Text style={styles.headertext}>Notifications</Text>
+              <Text style={styles.headertext}>Your Tickets</Text>
             </View>
           </View>
           
-          <Text style={styles.notiCategory}>Today</Text>
+            <ScrollView style={styles.scrollContainer}>
 
-          <View style={styles.notificationContainer}>
-            <Image source={profile} style={styles.profileImg}/>
-            <View style={styles.notificationContainer2} >
-              <Text style={styles.notiHeader}>{notiHeader}</Text>
-              <Text style={styles.noti}>{noti}</Text>
-            </View>
-          </View>
+                <View style={styles.ticketContainer}>
+
+                    <Image source={planetPic} style={styles.planetPic}/>
+                    <View style={styles.notificationContainer2} >
+                        <Text style={styles.travelTo}>{travelTo}</Text>
+                        <Text style={styles.noti}>{details}</Text>
+                    </View>
+
+                </View>
+
+            </ScrollView>
+
 
         </SafeAreaView>
       </ImageBackground>
@@ -79,19 +84,16 @@ export default NotificationsScreen = ({ navigation }) => {
     headerBtnContainer: {
         marginRight: 40,
     },
-    profileImg: {
-      width: 50,
-      height: 50,
-      borderRadius: 25,
-      marginRight: 10,
-  },
-    
-    
-    notificationContainer: {
+    scrollContainer: {
+        width: "100%",
+        marginTop: 10,
+      },
+      ticketContainer:{
+        alignSelf: 'center',
         width: '90%',
         margin: 12,
         padding: 10,
-        backgroundColor: 'rgba(44, 93, 135, 0.6)',
+        backgroundColor: 'rgba(44, 93, 135, 1)',
         borderRadius: 25,
         flexDirection: 'row',
         justifyContent: 'flex-start',
@@ -106,27 +108,28 @@ export default NotificationsScreen = ({ navigation }) => {
               elevation: 10,
             },
         })
-    },
-    notificationContainer2: {
+      },
+      planetPic:{
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        marginRight: 15,
+      },
+      notificationContainer2: {
         padding: 5,
+        marginRight: 10,
         justifyContent: 'flex-start',
     },
-    notiHeader:{
-      color: '#ffffff',
-      fontSize: 18,
-      fontWeight: 'bold',
-    },
-    noti:{
+    
+    travelTo:{
         color: '#ffffff',
-        fontSize: 12,
-    },
-    notiCategory:{
-      color: '#ffffff',
-      fontSize: 18,
-      fontWeight: 'bold',
-      alignSelf: 'flex-start',
-      marginLeft: '15%',
-      marginTop: 20,
-    },
+        fontSize: 18,
+        fontWeight: 'bold',
+      },
+      noti:{
+          color: '#ffffff',
+          fontSize: 12,
+      },
+      
 }
 )
