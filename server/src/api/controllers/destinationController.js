@@ -1,28 +1,13 @@
-const {
-  createUser,
-  comparePassword,
-  getUserData,
-} = require("../services/destinationService.js")
+const { getDestination } = require("../services/destinationService.js")
 
 const search = async (req, res) => {
-    const destination = req.body.destination
-
-    const destinationData = await getDestinationData(destination)
-
-    if(destinationData)
-}
-
-const register = async (req, res) => {
-  console.log("Registration function")
-  const universal_id = req.body.universal_id
-  const username = req.body.username
-  const password = req.body.password
-  const userType = req.body.userType
-
-  const newUser = await createUser(username, password, userType, universal_id)
-  if (newUser) {
-    console.log("Registration successful")
-    return res.send({ approved: true })
+  const searchEntry = req.query.searchEntry
+  console.log(searchEntry)
+  const destinations = await getDestination(searchEntry)
+  if (destinations) {
+    console.log("Query successful")
+    console.log(destinations)
+    return res.send({ destinations: destinations })
   }
 }
 
