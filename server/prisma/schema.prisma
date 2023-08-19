@@ -7,84 +7,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Booking {
-  booking_id                                               String             @id @db.Uuid
-  ship_id                                                  String?            @db.Uuid
-  starting_id                                              String?            @db.Uuid
-  end_id                                                   String?            @db.Uuid
-  starting_time                                            DateTime?          @db.Timestamp(6)
-  local_destination_Booking_end_idTolocal_destination      local_destination? @relation("Booking_end_idTolocal_destination", fields: [end_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Booking.end_id")
-  Spaceship                                                Spaceship?         @relation(fields: [ship_id], references: [ship_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Booking.ship_id")
-  local_destination_Booking_starting_idTolocal_destination local_destination? @relation("Booking_starting_idTolocal_destination", fields: [starting_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Booking.starting_id")
-  Ticket                                                   Ticket[]
+model Available_Booking {
+  booking_id                                                         String             @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  ship_id                                                            String?            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  starting_id                                                        String?            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  end_id                                                             String?            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  starting_time                                                      DateTime?          @db.Timestamp(6)
+  local_destination_Available_Booking_end_idTolocal_destination      local_destination? @relation("Available_Booking_end_idTolocal_destination", fields: [end_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.end_id")
+  Spaceship                                                          Spaceship?         @relation(fields: [ship_id], references: [ship_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.ship_id")
+  local_destination_Available_Booking_starting_idTolocal_destination local_destination? @relation("Available_Booking_starting_idTolocal_destination", fields: [starting_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.starting_id")
+  Ticket                                                             Ticket[]
+
+  @@map("Available Booking")
+}
+
+model Booking_spaceship {
+  ship_type                                                          ship_type
+  starting_id                                                        String            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  end_id                                                             String            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  price                                                              Float?
+  local_destination_Booking_spaceship_end_idTolocal_destination      local_destination @relation("Booking_spaceship_end_idTolocal_destination", fields: [end_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Booking-spaceship.end_id")
+  local_destination_Booking_spaceship_starting_idTolocal_destination local_destination @relation("Booking_spaceship_starting_idTolocal_destination", fields: [starting_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Booking-spaceship.starting_id")
+
+  @@id([ship_type, starting_id, end_id])
+  @@map("Booking-spaceship")
 }
 
 model Credentials {
-  user_id       String  @id @db.Uuid
-  password_hash String? @db.VarChar(75)
-  username      String? @db.VarChar(50)
-  user_type     String? @db.VarChar(20)
-}
-
-model Images {
-  image_id  String  @id @db.Uuid
-  memory_id String? @db.Uuid
-  image_uri String? @db.VarChar(50)
-  memory    memory? @relation(fields: [memory_id], references: [memory_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Images.memory_id")
-}
-
-model Order {
-  order_id   String    @id @db.Uuid
-  user_id    String?   @db.Uuid
-  order_time DateTime? @db.Timestamp(6)
-  order_type String?   @db.VarChar(20)
-  booking_id String?   @db.Uuid
-  User       User?     @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Order.user_id")
-  Ticket     Ticket[]
-}
-
-model Payment {
-  payment_id String  @id @db.Uuid
-  mode       String? @db.VarChar(20)
-  price      Float?
-  order_id   String? @db.Uuid
-}
-
-model Planet {
-  planet_id         String              @id @db.Uuid
-  description       String?             @db.VarChar(50)
-  Spacestation      Spacestation?
-  local_destination local_destination[]
-}
-
-model Spaceship {
-  ship_id    String    @id @db.Uuid
-  seat_count Int?
-  name       String?   @db.VarChar(20)
-  type       String?   @db.VarChar(20)
-  Booking    Booking[]
-}
-
-model Spacestation {
-  space_station_id String  @id @db.Uuid
-  planet_id        String? @db.Uuid
-  Planet           Planet  @relation(fields: [space_station_id], references: [planet_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Spacestation.space_station_id")
-}
-
-model Ticket {
-  ticket_id  String   @id @db.Uuid
-  booking_id String?  @db.Uuid
-  price      Float?
-  seat_num   Int?
-  order_id   String?  @db.Uuid
-  Booking    Booking? @relation(fields: [booking_id], references: [booking_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Ticket.booking_id")
-  Order      Order?   @relation(fields: [order_id], references: [order_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Ticket.order_id")
-}
-
-model User {
-  user_id       String          @id @db.Uuid
-  name          String?         @db.VarChar(50)
-  uid_number    String?         @db.VarChar(50)
+  universal_id  String          @id @db.VarChar(50)
+  password_hash String?         @db.VarChar(75)
+  username      String?         @db.VarChar(50)
+  user_type     String?         @db.VarChar(20)
   points        Int?
   Order         Order[]
   crypto_wallet crypto_wallet[]
@@ -92,36 +45,92 @@ model User {
   stored_cards  stored_cards?
 }
 
+model Images {
+  image_id  String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  memory_id String? @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  image_uri String? @db.VarChar(50)
+  memory    memory? @relation(fields: [memory_id], references: [memory_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Images.memory_id")
+}
+
+model Order {
+  order_id     String       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  universal_id String?      @db.VarChar(50)
+  order_time   DateTime?    @db.Timestamp(6)
+  order_type   String?      @db.VarChar(20)
+  mode         String?      @db.VarChar(20)
+  ticket_count Int?
+  Credentials  Credentials? @relation(fields: [universal_id], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Order.universal_id")
+  Ticket       Ticket[]
+}
+
+model Planet {
+  planet_id         String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  description       String?             @db.VarChar(50)
+  Spacestation      Spacestation?
+  local_destination local_destination[]
+}
+
+model Spaceship {
+  ship_id           String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  seat_count        Int?
+  name              String?             @db.VarChar(20)
+  ship_type         ship_type?
+  Available_Booking Available_Booking[]
+}
+
+model Spacestation {
+  space_station_id String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  planet_id        String? @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  Planet           Planet  @relation(fields: [space_station_id], references: [planet_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Spacestation.space_station_id")
+}
+
+model Ticket {
+  ticket_id         String             @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  booking_id        String?            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  seat_num          Int?
+  order_id          String?            @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  Available_Booking Available_Booking? @relation(fields: [booking_id], references: [booking_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Ticket.booking_id")
+  Order             Order?             @relation(fields: [order_id], references: [order_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Ticket.order_id")
+}
+
 model crypto_wallet {
-  wallet_id String  @id @db.Uuid
-  user_id   String? @db.Uuid
-  User      User?   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_crypto_wallet.user_id")
+  wallet_id    String       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  universal_id String?      @db.VarChar(50)
+  Credentials  Credentials? @relation(fields: [universal_id], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_crypto_wallet.universal_id")
 }
 
 model local_destination {
-  local_dest_id                                  String    @id @db.Uuid
-  name                                           String?   @db.VarChar(50)
-  Location                                       String?   @db.VarChar(75)
-  planet_id                                      String?   @db.Uuid
-  local_description                              String?   @db.VarChar(50)
-  Booking_Booking_end_idTolocal_destination      Booking[] @relation("Booking_end_idTolocal_destination")
-  Booking_Booking_starting_idTolocal_destination Booking[] @relation("Booking_starting_idTolocal_destination")
-  Planet                                         Planet?   @relation(fields: [planet_id], references: [planet_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_local_destination.planet_id")
+  local_dest_id                                                      String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name                                                               String?             @db.VarChar(50)
+  Location                                                           String?             @db.VarChar(75)
+  planet_id                                                          String?             @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  local_description                                                  String?             @db.VarChar(50)
+  Available_Booking_Available_Booking_end_idTolocal_destination      Available_Booking[] @relation("Available_Booking_end_idTolocal_destination")
+  Available_Booking_Available_Booking_starting_idTolocal_destination Available_Booking[] @relation("Available_Booking_starting_idTolocal_destination")
+  Booking_spaceship_Booking_spaceship_end_idTolocal_destination      Booking_spaceship[] @relation("Booking_spaceship_end_idTolocal_destination")
+  Booking_spaceship_Booking_spaceship_starting_idTolocal_destination Booking_spaceship[] @relation("Booking_spaceship_starting_idTolocal_destination")
+  Planet                                                             Planet?             @relation(fields: [planet_id], references: [planet_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_local_destination.planet_id")
 }
 
 model memory {
-  memory_id String   @id @db.Uuid
-  user_id   String?  @db.Uuid
-  likes     Int?
-  Images    Images[]
-  User      User?    @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_memory.user_id")
+  memory_id    String       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  universal_id String?      @db.VarChar(50)
+  likes        Int?
+  Images       Images[]
+  Credentials  Credentials? @relation(fields: [universal_id], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_memory.universal_id")
 }
 
 model stored_cards {
-  card_number  String  @id @db.Uuid
-  user_id      String? @db.Uuid
-  expiry_month Int?    @db.SmallInt
+  card_number  String      @id @db.Char(16)
+  universal_id String?     @db.VarChar(50)
+  expiry_month Int?        @db.SmallInt
   expiry_year  Int?
   cvn          Int?
-  User         User    @relation(fields: [card_number], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_stored_cards.card_number")
+  Credentials  Credentials @relation(fields: [card_number], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_stored_cards.card_number")
+}
+
+enum ship_type {
+  SPACE_BUS    @map("SPACE BUS")
+  HELICARRIER
+  HYPER_DRIVES @map("HYPER DRIVES")
 }
