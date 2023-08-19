@@ -28,7 +28,7 @@ const AddBooking = async ( ship_name,depature,destination,starting_time,availabl
   
 try{
   await prisma.$transaction(async (tx) => {
-    const spaceship = await prisma.spaceship.findUnique({
+    const spaceship = await prisma.spaceship.findFirst({
       where: {
         name: ship_name,
       },
@@ -39,7 +39,7 @@ try{
     if (!spaceship) {
       throw new Error("Spaceship not found")
     }
-    const starting_id = await prisma.local_destination.findUnique({
+    const starting_id = await prisma.local_destination.findFirst({
       where: {
         name: depature,
       },
@@ -50,7 +50,7 @@ try{
     if (!starting_id) {
       throw new Error("depature not found")
     }
-    const end_id = await prisma.local_destination.findUnique({
+    const end_id = await prisma.local_destination.findFirst({
       where: {
         name: destination,
       },
