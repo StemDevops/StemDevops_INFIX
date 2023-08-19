@@ -24,3 +24,16 @@ VALUES
   (DEFAULT, 'planet with towering mountain ranges and floating islands', 'Aetheris'),
   (DEFAULT, 'lush planet with colossal ancient tree formations', 'Arboria'),
   (DEFAULT, 'planet with a colossal storm system  surface', 'Tempestora');
+
+ INSERT INTO public."Planet" (planet_id, description, name)
+           VALUES
+             (DEFAULT, 'this is the coldest planet', 'saturn'),
+             (DEFAULT, 'this is a rocky planet', 'mars'),
+             (DEFAULT, 'this planet has a great red spot', 'jupiter'),
+             (DEFAULT, 'known for its beautiful rings', 'uranus'),
+             (DEFAULT, 'our home planet', 'earth'),
+             (DEFAULT, 'the red planet', 'venus'),
+             (DEFAULT, 'the gas giant with a hexagonal storm', 'neptune'),
+             (DEFAULT, 'dwarf planet in the Kuiper belt', 'pluto'),
+             (DEFAULT, 'planet with extreme temperatures', 'mercury'),
+             (DEFAULT, 'the ice giant', 'neptune') 
