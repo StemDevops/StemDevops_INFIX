@@ -3,17 +3,20 @@ const { PrismaClient } = require("@prisma/client")
 const prisma = new PrismaClient()
 
 const getAvailableBookings = async (starting_id, end_id, starting_date) => {
-const shipDetail = await prisma.booking_view.findMany({
-    where: {
-      starting_id: starting_id,
-      end_id: end_id,
-      starting_date: starting_date
-    },
-    select: { price: true, name: true, ship_type:true},
-  })
+  const query = `
+    SELECT *
+    FROM booking_view
+    WHERE starting_id = $1 AND end_id = $2 AND starting_date = $3;
+  `
+
+  const shipDetail = await prisma.$queryRaw(
+    query,
+    starting_id,
+    end_id,
+    starting_date
+  )
 
   return shipDetail
-
 }
 
-module.exports = {  getAvailableBookings }
+module.exports = { getAvailableBookings }

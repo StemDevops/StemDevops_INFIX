@@ -5,7 +5,7 @@ const { booking } = bookingController
 const router = express.Router()
 
 // router.get("/")
-router.get("/booking", booking)
+router.post("/booking", booking)
 //router.post("/register", register)
 
 module.exports = router
