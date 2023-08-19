@@ -8,12 +8,6 @@ const cookieParser = require("cookie-parser")
 const UserRoute = require("./routes/UserRoutes.js")
 const OrderRoute = require("./routes/OrderRoutes.js")
 
-const BookRoute = require("./routes/BookingRoute.js")
-
-const DestinationRoute = require("./routes/DestinationRoutes.js")
-const CardRoute = require("./routes/CardRoutes.js")
-
-
 const app = express()
 const { urlencoded } = pkg
 const PORT = process.env.PORT || 3002
@@ -32,8 +26,3 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
 
 app.use("/user", UserRoute)
 app.use("/order", OrderRoute)
-
-app.use("/book", BookRoute)
-
-app.use("/card", CardRoute)
-app.use("/destination", DestinationRoute)
