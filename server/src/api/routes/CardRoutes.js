@@ -6,6 +6,6 @@ const router = express.Router()
 
 router.get("/")
 router.post("/save", cardSave)
-//router.post("/register", register)
+
 
 module.exports = router
