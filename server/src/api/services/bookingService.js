@@ -40,22 +40,51 @@ const AddBooking = async (booking_id, ship_id,starting_id,end_id,starting_time) 
     return availableBooking
   }
 
-  const getBookingDetails = async (booking_id) => {
-  
-
-    const bookingDetails = await prisma.available_Booking.findFirst({
-        where: {
-          booking_id: booking_id,
-        },
-        select: {
-            ship_id: true,
-            starting_id: true,
-            end_id: true,
-            starting_time: true
-        },
-      })
-  
-    return bookingDetails
+  const getAvailableBookings = async (starting_id,end_id,starting_date) => {
+    try {
+      await prisma.$transaction(async (tx) => {
+        const availableBooking = await tx.available_Booking.findMany({
+          where: {
+            starting_id: starting_id,
+            end_id: end_id,
+            starting_date: starting_date
+          },
+          select: {
+            starting_time: true,
+            spaceship:{
+              select:{
+                ship_type: true,
+                name: true, 
+              }
+            },
+            
+            available_seat_count: true,
+            
+          },
+        })
+        const shipTypes = availableBooking.map((booking) => booking.ship_type);
+        const shipPrices = await prisma.$queryRaw
+        `SELECT ship_type, price
+         FROM booking_spaceship
+         WHERE ship_type IN (${shipTypes})`;
+        
+         const bookingsWithPrices = availableBooking.map((booking) => { 
+              const price = shipPrices.find((price) => price.ship_type === booking.ship_type)
+              return {
+                ...booking,
+                price: price.price,
+              }}
+              )
+        return bookingsWithPrices
+        }) 
+    }
+    catch (err) {
+      console.log(err)
+    }
   }
+  
 
-module.exports = { createNewBooking, AddBooking, getBookingDetails}
+    
+  
+    
+module.exports = { createNewBooking, AddBooking, getAvailableBookings}

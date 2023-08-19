@@ -13,6 +13,8 @@ model Available_Booking {
   starting_id                                                        String?            @db.Uuid
   end_id                                                             String?            @db.Uuid
   starting_time                                                      DateTime?          @db.Timestamp(6)
+  available_seat_count                                               Int
+  starting_date                                                      DateTime?          @db.Date
   local_destination_Available_Booking_end_idTolocal_destination      local_destination? @relation("Available_Booking_end_idTolocal_destination", fields: [end_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.end_id")
   Spaceship                                                          Spaceship?         @relation(fields: [ship_id], references: [ship_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.ship_id")
   local_destination_Available_Booking_starting_idTolocal_destination local_destination? @relation("Available_Booking_starting_idTolocal_destination", fields: [starting_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.starting_id")
@@ -42,7 +44,7 @@ model Credentials {
   Order         Order[]
   crypto_wallet crypto_wallet[]
   memory        memory[]
-  stored_cards  stored_cards?
+  stored_cards  stored_cards[]
 }
 
 model Images {
@@ -121,12 +123,12 @@ model memory {
 }
 
 model stored_cards {
-  card_number  String      @id @db.Char(16)
-  universal_id String?     @db.VarChar(50)
-  expiry_month Int?        @db.SmallInt
+  card_number  String       @id @db.Char(16)
+  universal_id String?      @db.VarChar(50)
+  expiry_month Int?         @db.SmallInt
   expiry_year  Int?
   cvn          Int?
-  Credentials  Credentials @relation(fields: [card_number], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_stored_cards.card_number")
+  Credentials  Credentials? @relation(fields: [universal_id], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "stored_cards_Credentials_universal_id_fk")
 }
 
 enum ship_type {
