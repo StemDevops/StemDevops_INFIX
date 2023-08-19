@@ -28,4 +28,4 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
 
 app.use("/user", UserRoute)
 app.use("/order", OrderRoute)
-app.use("/book ", BookRoute)
+app.use("/book", BookRoute)

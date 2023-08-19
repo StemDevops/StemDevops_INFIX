@@ -12,6 +12,6 @@ const getLocatioId = async (depature) => {
     select: { local_dest_id: true },
   })
 
-  return locationr ? location.local_dest_id : null
+  return location ? location.local_dest_id : null
 }
 module.exports = { getLocatioId}
