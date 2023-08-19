@@ -40,4 +40,22 @@ const AddBooking = async (booking_id, ship_id,starting_id,end_id,starting_time) 
     return availableBooking
   }
 
-module.exports = { createNewBooking, AddBooking}
+  const getBookingDetails = async (booking_id) => {
+  
+
+    const bookingDetails = await prisma.available_Booking.findFirst({
+        where: {
+          booking_id: booking_id,
+        },
+        select: {
+            ship_id: true,
+            starting_id: true,
+            end_id: true,
+            starting_time: true
+        },
+      })
+  
+    return bookingDetails
+  }
+
+module.exports = { createNewBooking, AddBooking, getBookingDetails}
