@@ -4,14 +4,6 @@ const {
   getUserData,
 } = require("../services/destinationService.js")
 
-const search = async (req, res) => {
-    const destination = req.body.destination
-
-    const destinationData = await getDestinationData(destination)
-
-    if(destinationData)
-}
-
 const register = async (req, res) => {
   console.log("Registration function")
   const universal_id = req.body.universal_id
