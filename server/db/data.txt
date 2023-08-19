@@ -1,0 +1,26 @@
+INSERT INTO public.local_destination (local_dest_id, name, planet_id, local_description)
+VALUES
+  (DEFAULT, 'Crystal Oasis', 'e8b3e817-497b-4b76-a76a-aa1815723a8c', 'A serene oasis with crystal-clear waters.'),
+  (DEFAULT, 'Nova Heights', 'd44d44be-6d55-4d2a-ba0f-98c555136af0', 'A city nestled on high plateaus, surrounded by dazzling auroras.'),
+  (DEFAULT, 'Azure Caverns', 'cefb6f23-39d9-440c-a679-0f7c724e1ec8', 'An underground world of glowing blue caverns and hidden treasures.'),
+  (DEFAULT, 'Eternal Skyscape', 'cc5cfc2c-d736-4a38-af19-b02622f9478d', 'A floating city among the clouds, where the sky is forever painted in twilight.'),
+  (DEFAULT, 'Lumina Harbor', 'beb44b65-504f-4ae3-aee7-fbcf6aae56de', 'A bustling port town illuminated by bioluminescent flora and fauna.'),
+  (DEFAULT, 'Celestial Haven', 'bb57dc2e-9145-43c4-b9cb-ea6e8965e02b', 'A temple city dedicated to the stars, surrounded by lush gardens.'),
+  (DEFAULT, 'Sapphire Peak', '97ef7fbc-3ac7-4125-9e65-0fe1fca01699', 'A mountain retreat with breathtaking views of sapphire-blue lakes.'),
+  (DEFAULT, 'Iridescent Glade', '964e4090-466d-4429-89f7-b131c04be5a1', 'A tranquil glade where the flora shimmers with ever-changing colors.'),
+  (DEFAULT, 'Eclipse Sanctuary', '95b751d0-95d4-41f7-b3fe-3627c9898e37', 'A hidden sanctuary where rare celestial phenomena are observed.'),
+  (DEFAULT, 'Opal Archipelago', '89cd452f-9785-4440-a823-d242b75c85d5', 'A collection of islands with opalescent beaches and underwater wonders.');
+
+
+INSERT INTO public."Planet" (planet_id, description, name)
+VALUES
+  (DEFAULT, 'planet with crystalline landscapes', 'Aurorium'),
+  (DEFAULT, 'floating gas giant with colorful clouds', 'Caelumis'),
+  (DEFAULT, 'world covered in bioluminescent forests', 'Luminara'),
+  (DEFAULT, 'planet of eternal twilight and glowing flora', 'Nocturna'),
+  (DEFAULT, 'desert planet with shifting sand dunes', 'Aridia'),
+  (DEFAULT, 'oceanic world with bioluminescent marine life', 'Aquanis'),
+  (DEFAULT, 'frozen planet with crystalline ice structures', 'Glaciara'),
+  (DEFAULT, 'planet with towering mountain ranges and floating islands', 'Aetheris'),
+  (DEFAULT, 'lush planet with colossal ancient tree formations', 'Arboria'),
+  (DEFAULT, 'planet with a colossal storm system  surface', 'Tempestora');
