@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
 }
 
 datasource db {
@@ -67,7 +68,8 @@ model Order {
 
 model Planet {
   planet_id         String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  description       String?             @db.VarChar(50)
+  description       String?             @db.VarChar(100)
+  name              String?             @db.VarChar(50)
   Spacestation      Spacestation?
   local_destination local_destination[]
 }
@@ -104,9 +106,8 @@ model crypto_wallet {
 model local_destination {
   local_dest_id                                                      String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   name                                                               String?             @db.VarChar(50)
-  Location                                                           String?             @db.VarChar(75)
   planet_id                                                          String?             @db.Uuid
-  local_description                                                  String?             @db.VarChar(50)
+  local_description                                                  String?             @db.VarChar(150)
   Available_Booking_Available_Booking_end_idTolocal_destination      Available_Booking[] @relation("Available_Booking_end_idTolocal_destination")
   Available_Booking_Available_Booking_starting_idTolocal_destination Available_Booking[] @relation("Available_Booking_starting_idTolocal_destination")
   Booking_spaceship_Booking_spaceship_end_idTolocal_destination      Booking_spaceship[] @relation("Booking_spaceship_end_idTolocal_destination")
@@ -129,6 +130,19 @@ model stored_cards {
   expiry_year  Int?
   cvn          Int?
   Credentials  Credentials? @relation(fields: [universal_id], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "stored_cards_Credentials_universal_id_fk")
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+view booking_view {
+  starting_id String?    @db.Uuid
+  end_id      String?    @db.Uuid
+  booking_id  String?    @db.Uuid
+  ship_id     String?    @db.Uuid
+  price       Float?
+  name        String?    @db.VarChar(20)
+  ship_type   ship_type?
+
+  @@ignore
 }
 
 enum ship_type {
