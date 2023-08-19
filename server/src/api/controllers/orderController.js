@@ -1,8 +1,9 @@
 const {  createOrder} = require("../services/orderService.js")
 
-const login = async (req, res) => {
-  const username = req.body.username
-  const password = req.body.password
+const oneway = async (req, res) => {
+  const universal_id = req.body.universal_id
+  const booking_id = req.body.booking_id
+  const ticket_count = req.body.ticket_count
 
   const hash = await getUserHash(username)
   if (!hash) {
@@ -11,7 +12,7 @@ const login = async (req, res) => {
 
 
 
-  const match = await comparePassword(password, hash)
+  const roundtrip = await comparePassword(password, hash)
   console.log("Match: ", match)
   if (match) {
     console.log("Login successful")
@@ -22,7 +23,7 @@ const login = async (req, res) => {
   }
 }
 
-const register = async (req, res) => {
+const multiplanet = async (req, res) => {
   
   console.log("Registration function")
   const universal_id = req.body.universal_id
@@ -37,5 +38,5 @@ const register = async (req, res) => {
   }
 }
 
-module.exports = { login, register }
+
 
