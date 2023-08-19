@@ -7,8 +7,14 @@ import bg from '../../assets/home_bg.png';
 import cardimg from '../../assets/offer1.jpg';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-const Home = () => {
+const Home = ({navigation}) => {
 
+    const gotoTravel = () => {
+        navigation.navigate('Travel');
+    }
+    const gotoSearch = () => {
+        navigation.navigate('World Search');
+    }
     const [pop_destinations, set_pop_destinations] = useState([
         {id: 1, title: "Moon", image: require('../../assets/card1.png'),},
         {id: 2, title: "Jupiter", image: require('../../assets/card2.jpg'),},
@@ -40,18 +46,17 @@ const Home = () => {
                     <View><Text style={styles.headertextwelcome}>Welcome</Text>
                         <Text style={styles.headertext}>Josh Peter</Text>
                     </View>
-                    <TouchableOpacity>
-                        <Ionicons name="chatbubble-ellipses-outline" size={32}
-                                                color="white"/>
+                    <TouchableOpacity >
+                        <Ionicons name="chatbubble-ellipses-outline" size={32} color="white"/>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.buttonsContainer}>
-                    <TouchableOpacity style={styles.buttons}>
+                    <TouchableOpacity style={styles.buttons} onPress={gotoTravel}>
                         <Ionicons name="rocket-outline" size={32} color="#003A6B"/>
                         <Text style={styles.buttonsText}>Flights</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttons}>
+                    <TouchableOpacity style={styles.buttons} onPress={gotoSearch}>
                         <Ionicons name="search-outline" size={32} color="#003A6B"/>
                         <Text style={styles.buttonsText}>Search</Text>
                     </TouchableOpacity>
