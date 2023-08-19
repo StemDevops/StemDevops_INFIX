@@ -17,7 +17,6 @@ import AuthButton from "../../components/AuthButton"
 import Logo from "../../assets/Logo.png"
 import Axios from "axios" // Import the axios library for making HTTP requests
 
-
 const Signup = ({ navigation }) => {
   const [universalId, setUniversalId] = React.useState("")
   const [email, setEmail] = React.useState("")
@@ -43,6 +42,7 @@ const Signup = ({ navigation }) => {
         // Handle the response from the backend if needed
         if (response.data.approved === true) {
           console.log("Registration:", response.data.approved)
+          navigation.navigate("Login")
         } else {
           console.log("Registration unsuccessful:", response.data.approved)
         }

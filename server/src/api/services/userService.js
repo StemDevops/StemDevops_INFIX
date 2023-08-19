@@ -3,15 +3,15 @@ const bcrypt = require("bcrypt")
 
 const prisma = new PrismaClient()
 
-const getUserData = async (username) => {
+const getUserData = async (universal_id) => {
   const user = await prisma.credentials.findFirst({
     where: {
-      username: username,
+      universal_id: universal_id,
     },
     select: { password_hash: true, username: true },
   })
 
-  return user ? {hash: user.password_hash, username: user.username } : null;
+  return user ? { hash: user.password_hash, username: user.username } : null
 }
 
 const comparePassword = async (password, hash) => {
