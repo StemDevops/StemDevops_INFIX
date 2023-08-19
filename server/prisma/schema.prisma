@@ -134,13 +134,14 @@ model stored_cards {
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 view booking_view {
-  starting_id String?    @db.Uuid
-  end_id      String?    @db.Uuid
-  booking_id  String?    @db.Uuid
-  ship_id     String?    @db.Uuid
-  price       Float?
-  name        String?    @db.VarChar(20)
-  ship_type   ship_type?
+  starting_id   String?    @db.Uuid
+  end_id        String?    @db.Uuid
+  booking_id    String?    @db.Uuid
+  ship_id       String?    @db.Uuid
+  price         Float?
+  name          String?    @db.VarChar(20)
+  ship_type     ship_type?
+  starting_date DateTime?  @db.Date
 
   @@ignore
 }

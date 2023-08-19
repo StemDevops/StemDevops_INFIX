@@ -5,7 +5,8 @@ SELECT
   t1.ship_id,
   t3.price,
   t2.name,
-  t2.ship_type
+  t2.ship_type,
+  t1.starting_date
 FROM
   (
     (
