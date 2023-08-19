@@ -1,34 +1,36 @@
-// const { getUserHash, comparePassword } = require("../services/orderService.js")
+const {  createOrder} = require("../services/orderService.js")
+//const{getBookingDetails} = require("../services/bookingService.js")
+const{createTicket} = require("../services/ticketService.js")
 
-// const one_way = async (req, res) => {
-//   const departure = req.body.departure
-//   const destination = req.body.destination
-//   const date = req.body.date
+const oneway = async (req, res) => {
+  const universal_id = req.body.universal_id
+  const booking_id = req.body.booking_id
+  const ticket_count = req.body.ticket_count
+  const order_type = "oneway"
 
-//   const travel_modes = await getTravelMode(departure, destination, date)
-//   // const no_tickets = await getTicketCount(departure, destination, date)
+  
 
-//   // const match = await comparePassword(password, hash)
-//   // console.log("Match: ", match)
-//   // if (match) {
-//   //   console.log("Login successful")
-//   //   return res.send({ approved: true })
-//   // } else {
-//   //   console.log("Login failed")
-//   //   return res.send({ approved: false })
-//   // }
-
-//   if (travel_modes){}
+  
+  
+}
 
 
-// const round_trip = async (req, res) => {
+ 
 
-//   console.log("Registration function")
-// }
+const multiplanet = async (req, res) => {
+  
+  console.log("Registration function")
+  const universal_id = req.body.universal_id
+  const username = req.body.username
+  const password = req.body.password
+  const userType = req.body.userType
+  
+  const newUser = await createUser(username, password,userType, universal_id)
+  if(newUser){
+    console.log("Registration successful")
+    return res.send({ approved: true })
+  }
+}
 
-// const multi_trip = async (req, res) => {
-//   console.log("Registration function")
-// }
-// }
 
-// module.exports = { one_way, round_trip, multi_trip }
+
