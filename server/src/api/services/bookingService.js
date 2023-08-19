@@ -24,11 +24,11 @@ const createNewBooking = async (ship_type, starting_id,end_id,price) => {
 
 
 //to enter new booking to the available booking table
-const AddBooking = async ( ship_name,depature,destination,starting_time,available_seat_count,starting_date) => {
+const AddBooking = async ( ship_name,starting_id,end_id,starting_time,available_seat_count,starting_date) => {
   
 try{
   await prisma.$transaction(async (tx) => {
-    const spaceship = await prisma.spaceship.findFirst({
+    const spaceship_details = await prisma.spaceship.findFirst({
       where: {
         name: ship_name,
       },
@@ -36,48 +36,20 @@ try{
         ship_id: true,
       },
     })
-    if (!spaceship) {
+    if (!spaceship_details) {
       throw new Error("Spaceship not found")
     }
-    const starting_id = await prisma.local_destination.findFirst({
-      where: {
-        name: depature,
-      },
-      select: {
-        local_dest_id: true,
-      },
-    })
-    if (!starting_id) {
-      throw new Error("depature not found")
-    }
-    const end_id = await prisma.local_destination.findFirst({
-      where: {
-        name: destination,
-      },
-      select: {
-        local_dest_id: true,
-      },
-    })
-    if (!end_id) {
-      throw new Error("destination not found")
-    }
+   
+    
     const booking = await tx.available_Booking.create({
       data:{
-        spaceship:{
+        Spaceship:{
           connect:{
-            ship_id: spaceship.ship_id,
+            ship_id: spaceship_details.ship_id,
           }
         },
-        starting_id:{
-          connect:{
-            local_dest_id: starting_id.local_dest_id,
-          }
-        },
-        end_id:{
-          connect:{
-            local_dest_id: end_id.local_dest_id,
-          }
-        },
+        starting_id: starting_id,
+        end_id: end_id,
         starting_time: starting_time,
         available_seat_count: available_seat_count,
         starting_date: starting_date,

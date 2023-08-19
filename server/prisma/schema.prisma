@@ -67,7 +67,8 @@ model Order {
 
 model Planet {
   planet_id         String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  description       String?             @db.VarChar(50)
+  description       String?             @db.VarChar(100)
+  name              String?             @db.VarChar(50)
   Spacestation      Spacestation?
   local_destination local_destination[]
 }
@@ -104,9 +105,8 @@ model crypto_wallet {
 model local_destination {
   local_dest_id                                                      String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   name                                                               String?             @db.VarChar(50)
-  Location                                                           String?             @db.VarChar(75)
   planet_id                                                          String?             @db.Uuid
-  local_description                                                  String?             @db.VarChar(50)
+  local_description                                                  String?             @db.VarChar(150)
   Available_Booking_Available_Booking_end_idTolocal_destination      Available_Booking[] @relation("Available_Booking_end_idTolocal_destination")
   Available_Booking_Available_Booking_starting_idTolocal_destination Available_Booking[] @relation("Available_Booking_starting_idTolocal_destination")
   Booking_spaceship_Booking_spaceship_end_idTolocal_destination      Booking_spaceship[] @relation("Booking_spaceship_end_idTolocal_destination")

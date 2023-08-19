@@ -1,4 +1,4 @@
-const { createCard } = require("../services/cardService.js")
+const { createCard, getCard } = require("../services/cardService.js")
 
 const cardSave = async (req, res) => {
   console.log(req.body)
@@ -23,4 +23,17 @@ const cardSave = async (req, res) => {
   }
 }
 
-module.exports = { cardSave }
+const getUserCards = async (req, res) => {
+  console.log("get user cards function")
+  const universal_id = req.body.universal_id
+
+  const userCards = await getCard(universal_id)
+  if (userCards) {
+    console.log("Cards fetched succesfully")
+    return res.send({ approved: true })
+  }
+}
+
+
+
+module.exports = { cardSave, getUserCards }

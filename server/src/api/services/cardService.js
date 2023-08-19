@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 
 const createCard = async (
   card_number,
-  user_id,
+  universal_id,
   expiry_month,
   expiry_year,
   cvn
@@ -13,7 +13,7 @@ const createCard = async (
   const card = await prisma.stored_cards.create({
     data: {
       card_number: card_number,
-      user_id: user_id,
+      universal_id: universal_id,
       expiry_month: expiry_month,
       expiry_year: expiry_year,
       cvn: cvn,
@@ -22,5 +22,14 @@ const createCard = async (
 
   return card
 }
+const getCard = async (universal_id) => {
+  const card = await prisma.stored_cards.findMany({
+    where: {
+      universal_id: universal_id,
+    },
+    
+  })
 
-module.exports = { createCard }
+  return card
+}
+module.exports = { createCard, getCard }
