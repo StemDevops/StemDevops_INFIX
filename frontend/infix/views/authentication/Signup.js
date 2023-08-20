@@ -79,13 +79,7 @@ const Signup = ({ navigation }) => {
               secureTextEntry={false}
             />
             <AuthInput
-              placeholder="Email"
-              action={setEmail}
-              value={email}
-              secureTextEntry={false}
-            />
-            <AuthInput
-              placeholder="Full Name"
+              placeholder="User Name"
               action={setName}
               value={name}
               secureTextEntry={false}

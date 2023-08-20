@@ -37,3 +37,42 @@ VALUES
              (DEFAULT, 'dwarf planet in the Kuiper belt', 'pluto'),
              (DEFAULT, 'planet with extreme temperatures', 'mercury'),
              (DEFAULT, 'the ice giant', 'neptune') 
+
+
+INSERT INTO public."Booking-spaceship" (ship_type, starting_id, end_id, price)
+VALUES
+    ('HYPER DRIVES'::ship_type, '5a21bf4c-3414-4ec9-b5ca-876d89cd5b02', '6f8b4e36-a14e-4b3a-abc4-5f460321712a', 2200),
+    ('SPACE BUS'::ship_type, 'f399ba47-c11a-47a2-8fb6-a9c08d609d8a', '5f4c1351-5306-4ff2-80b2-60b46dbdd425', 1800),
+    ('HELICARRIER'::ship_type, 'b50737a5-f409-4d01-89e5-bce33c62214e', 'dd7377ee-e35b-4888-96bc-733096e6643a', 1400),
+    ('HYPER DRIVES'::ship_type, '4c09c5ee-fcd3-4c60-a62e-15675ded29d0', '65e70b61-c200-41f7-8622-3ddcf75372ab', 2600),
+    ('SPACE BUS'::ship_type, '06870e8b-898c-47d1-b7fc-869215417402', '7a0019f4-05bf-48a8-926c-e50329aa4291', 1200),
+    ('HELICARRIER'::ship_type, '0c169570-f27f-4f6e-87cb-8aa587df086d', 'f399ba47-c11a-47a2-8fb6-a9c08d609d8a', 1700),
+    ('HYPER DRIVES'::ship_type, '5f4c1351-5306-4ff2-80b2-60b46dbdd425', 'b50737a5-f409-4d01-89e5-bce33c62214e', 2400),
+    ('SPACE BUS'::ship_type, 'dd7377ee-e35b-4888-96bc-733096e6643a', '4c09c5ee-fcd3-4c60-a62e-15675ded29d0', 1600),
+    ('HELICARRIER'::ship_type, '65e70b61-c200-41f7-8622-3ddcf75372ab', '06870e8b-898c-47d1-b7fc-869215417402', 2000),
+    ('HYPER DRIVES'::ship_type, '7a0019f4-05bf-48a8-926c-e50329aa4291', '0c169570-f27f-4f6e-87cb-8aa587df086d', 2100);
+
+
+INSERT INTO public."Booking-spaceship" (ship_type, starting_id, end_id, price)
+VALUES
+    ('SPACE BUS'::ship_type, '7a0019f4-05bf-48a8-926c-e50329aa4291', '0c169570-f27f-4f6e-87cb-8aa587df086d', 1100),
+    ('HELICARRIER'::ship_type, '5a21bf4c-3414-4ec9-b5ca-876d89cd5b02', '6f8b4e36-a14e-4b3a-abc4-5f460321712a', 1500),
+    ('HYPER DRIVES'::ship_type, 'f399ba47-c11a-47a2-8fb6-a9c08d609d8a', '5f4c1351-5306-4ff2-80b2-60b46dbdd425', 2000),
+    ('SPACE BUS'::ship_type, 'b50737a5-f409-4d01-89e5-bce33c62214e', 'dd7377ee-e35b-4888-96bc-733096e6643a', 1300),
+    ('HELICARRIER'::ship_type, '4c09c5ee-fcd3-4c60-a62e-15675ded29d0', '65e70b61-c200-41f7-8622-3ddcf75372ab', 1800),
+    ('HYPER DRIVES'::ship_type, '06870e8b-898c-47d1-b7fc-869215417402', '7a0019f4-05bf-48a8-926c-e50329aa4291', 2500),
+    ('SPACE BUS'::ship_type, '0c169570-f27f-4f6e-87cb-8aa587df086d', 'f399ba47-c11a-47a2-8fb6-a9c08d609d8a', 1400),
+    ('HELICARRIER'::ship_type, '5f4c1351-5306-4ff2-80b2-60b46dbdd425', 'b50737a5-f409-4d01-89e5-bce33c62214e', 1700),
+    ('HYPER DRIVES'::ship_type, 'dd7377ee-e35b-4888-96bc-733096e6643a', '4c09c5ee-fcd3-4c60-a62e-15675ded29d0', 2200),
+    ('SPACE BUS'::ship_type, '65e70b61-c200-41f7-8622-3ddcf75372ab', '06870e8b-898c-47d1-b7fc-869215417402', 1600);
+
+
+INSERT INTO public."Available Booking" (booking_id, ship_id, starting_id, end_id, starting_time, available_seat_count, starting_date)
+VALUES
+    (DEFAULT, '94a0d173-b383-4ba2-9718-f75a1886218e', '7a0019f4-05bf-48a8-926c-e50329aa4291', '5a21bf4c-3414-4ec9-b5ca-876d89cd5b02', '2023-08-20 01:58:06.000000', 20, '2023-08-21'),
+    (DEFAULT, 'e9c6b619-69cb-4361-80dc-de8f725293a3', '5a21bf4c-3414-4ec9-b5ca-876d89cd5b02', '6f8b4e36-a14e-4b3a-abc4-5f460321712a', '2023-08-22 10:00:00.000000', 15, '2023-08-22'),
+    (DEFAULT, 'd0618c59-eaf0-4ec6-9670-1e6c55136d1c', 'f399ba47-c11a-47a2-8fb6-a9c08d609d8a', '5f4c1351-5306-4ff2-80b2-60b46dbdd425', '2023-08-24 09:45:00.000000', 18, '2023-08-24'),
+    (DEFAULT, '07632671-fda3-4295-9a0c-f9570655737e', '5f4c1351-5306-4ff2-80b2-60b46dbdd425', 'b50737a5-f409-4d01-89e5-bce33c62214e', '2023-08-25 15:00:00.000000', 12, '2023-08-25'),
+    (DEFAULT, '76072b00-a789-4f2c-97e8-e0dff9c9fd23', 'b50737a5-f409-4d01-89e5-bce33c62214e', 'dd7377ee-e35b-4888-96bc-733096e6643a', '2023-08-26 14:30:00.000000', 30, '2023-08-26'),
+    (DEFAULT, 'fecbcd98-9b61-451b-8539-1e9fe454e75a', 'dd7377ee-e35b-4888-96bc-733096e6643a', '4c09c5ee-fcd3-4c60-a62e-15675ded29d0', '2023-08-27 17:20:00.000000', 22, '2023-08-27'),
+    (DEFAULT, 'bb55b625-5b48-4871-af82-0cb821ca1699', '06870e8b-898c-47d1-b7fc-869215417402', '5a21bf4c-3414-4ec9-b5ca-876d89cd5b02', '2023-08-28 08:00:00.000000', 10, '2023-08-28')

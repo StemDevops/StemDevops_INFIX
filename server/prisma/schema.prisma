@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
 }
 
 datasource db {
@@ -12,7 +13,7 @@ model Available_Booking {
   ship_id                                                            String?            @db.Uuid
   starting_id                                                        String?            @db.Uuid
   end_id                                                             String?            @db.Uuid
-  starting_time                                                      DateTime?          @db.Timestamp(6)
+  starting_time                                                      DateTime?          @db.Time(6)
   available_seat_count                                               Int
   starting_date                                                      DateTime?          @db.Date
   local_destination_Available_Booking_end_idTolocal_destination      local_destination? @relation("Available_Booking_end_idTolocal_destination", fields: [end_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.end_id")
@@ -129,6 +130,21 @@ model stored_cards {
   expiry_year  Int?
   cvn          Int?
   Credentials  Credentials? @relation(fields: [universal_id], references: [universal_id], onDelete: NoAction, onUpdate: NoAction, map: "stored_cards_Credentials_universal_id_fk")
+}
+
+/// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+view booking_view {
+  starting_id   String?    @db.Uuid
+  end_id        String?    @db.Uuid
+  booking_id    String?    @db.Uuid
+  ship_id       String?    @db.Uuid
+  price         Float?
+  name          String?    @db.VarChar(20)
+  ship_type     ship_type?
+  starting_date DateTime?  @db.Date
+  starting_time DateTime?  @db.Time(6)
+
+  @@ignore
 }
 
 enum ship_type {

@@ -68,7 +68,7 @@ const Login = ({ navigation }) => {
           </View>
           <View style={styles.inputContainer}>
             <AuthInput
-              placeholder="Username"
+              placeholder="Universal ID"
               action={setUid}
               value={uid}
               secureTextEntry={false}
