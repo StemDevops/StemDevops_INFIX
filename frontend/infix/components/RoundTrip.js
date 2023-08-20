@@ -1,3 +1,4 @@
+
 import {ScrollView, StyleSheet, Text, TouchableOpacity, View, TextInput} from "react-native";
 import InputTextField from "./InputTextField";
 import React, {useState} from "react";
@@ -5,12 +6,14 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const RoundTrip = ({navigation}) => {
 
+
     const [departure, setDeparture] = useState("");
     const [destination, setDestination] = useState("");
     const [departureDate, setDepartureDate] = useState("");
     const [arrivalDate, setArrivalDate] =useState("")
     const [travelMode, setTravelMode] = useState("Spaceship");
     const [ticketCount, setTicketCount] = useState(1);
+
     const [isDepDatePickerVisible, setDepDatePickerVisibility] = useState(false);
     const [isArrDatePickerVisible, setArrDatePickerVisibility] = useState(false);
     const [travelModes, setTravelModes] = useState([
@@ -91,11 +94,13 @@ const RoundTrip = ({navigation}) => {
                             isDarkModeEnabled={true}
                             minimumDate={new Date()}
                         />
+
                 </View>
                 <InputTextField value="Travel mode"/>
                 <InputTextField value="Ticket count"/>
             </View>
             <TouchableOpacity style={styles.checkoutContainer} onPress={gotoCheckout}>
+
                 <Text style={styles.checkoutText}>
                     Checkout
                 </Text>
@@ -174,6 +179,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
         fontWeight: "bold",
+
     },inputContainer2: {
         width: '48%',
         flexDirection: "row",
@@ -201,6 +207,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: "rgb(255,255,255)",
     },
+
 
 });
 export default RoundTrip;

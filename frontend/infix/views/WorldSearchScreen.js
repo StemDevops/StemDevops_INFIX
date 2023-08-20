@@ -11,6 +11,7 @@ import {
 import Ionicons from "@expo/vector-icons/Ionicons"
 import bg from "../assets/Search_bg.png"
 import Axios from "axios"
+import _debounce from "lodash.debounce" // Import the debounce function
 
 export default WorldSearchScreen = ({ navigation }) => {
   const [inputText, setInputText] = useState("")
@@ -18,6 +19,7 @@ export default WorldSearchScreen = ({ navigation }) => {
   const [searchResults, setSearchResults] = useState([])
 
   const handleTextChange = (text) => {
+    setInputText(text) // Update inputText state
     Axios.get("http://192.168.8.165:3002/destination/search", {
       params: {
         searchEntry: text, // assuming "searchTerm" is the query parameter name expected by the backend
@@ -59,12 +61,12 @@ export default WorldSearchScreen = ({ navigation }) => {
             style={styles.Text2}
             value={inputText}
             placeholder={placeholderText}
-            onChangeText={(text) => setInputText(text)} // Update inputText state
-            onSubmitEditing={() => handleTextChange(inputText)} // Handle text submission
+            onChangeText={(text) => handleTextChange(text)} // Update inputText state
+            // onSubmitEditing={(text) => handleTextChange(inputText)} // Handle text submission
           />
         </View>
 
-        {inputText !== "" && (
+        {inputText !== "" && searchResults.length>0 && (
           <View style={styles.listItems}>
             {searchResults.map((result, index) => (
               <TouchableOpacity key={index} style={styles.listItem}>

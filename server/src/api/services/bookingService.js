@@ -1,90 +1,53 @@
 const { PrismaClient } = require("@prisma/client")
-const bcrypt = require("bcrypt")
 
 const prisma = new PrismaClient()
 
+const getAvailableBookings = async (starting_id, end_id, starting_date) => {
+  const rawQuery = prisma.$queryRaw`SELECT name,ship_type,price,EXTRACT(HOUR FROM starting_time) || ':' || EXTRACT(MINUTE FROM starting_time) AS starting_time FROM booking_view WHERE starting_id = ${starting_id}::uuid AND end_id = ${end_id}::uuid AND starting_date = ${starting_date}::date;`
 
-//to create new spaceship booking entry
-
-const createNewBooking = async (ship_type, starting_id,end_id,price) => {
-  
-
-  const newBooking = await prisma.booking_spaceship.create({
-    data: {
-        ship_type: ship_type,
-        starting_id: starting_id,
-        end_id: end_id,
-        price: price
-    },
-    
-  })
-
-  return newBooking
+  const result = await rawQuery
+  return result
 }
-//to enter new booking to the available booking table
-const AddBooking = async (booking_id, ship_id,starting_id,end_id,starting_time) => {
-  
 
-    const availableBooking = await prisma.available_Booking.create({
-      data: {
-            booking_id: booking_id,
-            ship_id: ship_id,
-            starting_id: starting_id,
-            end_id: end_id,
-            starting_time: starting_time
-          
-      },
-      
+async function insertOrderAndTicket(
+  booking_id,
+  universal_id,
+  order_time,
+  order_type,
+  ship_type,
+  ticket_count
+) {
+  try {
+    const ticketDataArray = new Array(ticket_count).fill({
+      booking_id: booking_id, // Use the appropriate booking ID
     })
-  
-    return availableBooking
-  }
 
-  const getAvailableBookings = async (starting_id,end_id,starting_date) => {
-    try {
-      await prisma.$transaction(async (tx) => {
-        const availableBooking = await tx.available_Booking.findMany({
-          where: {
-            starting_id: starting_id,
-            end_id: end_id,
-            starting_date: starting_date
-          },
-          select: {
-            starting_time: true,
-            spaceship:{
-              select:{
-                ship_type: true,
-                name: true, 
-              }
-            },
-            
-            available_seat_count: true,
-            
-          },
-        })
-        const shipTypes = availableBooking.map((booking) => booking.ship_type);
-        const shipPrices = await prisma.$queryRaw
-        `SELECT ship_type, price
-         FROM booking_spaceship
-         WHERE ship_type IN (${shipTypes})`;
-        
-         const bookingsWithPrices = availableBooking.map((booking) => { 
-              const price = shipPrices.find((price) => price.ship_type === booking.ship_type)
-              return {
-                ...booking,
-                price: price.price,
-              }}
-              )
-        return bookingsWithPrices
-        }) 
-    }
-    catch (err) {
-      console.log(err)
-    }
-  }
-  
+    console.log(ticketDataArray)
 
-    
-  
-    
-module.exports = { createNewBooking, AddBooking, getAvailableBookings}
+    const createdOrder = await prisma.order.create({
+      data: {
+        universal_id: universal_id,
+        order_time: new Date().toISOString(),
+        order_type: order_type,
+        mode: ship_type,
+        ticket_count: ticket_count,
+      },
+    })
+
+    const createdTickets = await prisma.ticket.createMany({
+      data: ticketDataArray.map((ticketData) => ({
+        ...ticketData,
+        order_id: createdOrder.order_id,
+        seat_num: 1,
+      })),
+    })
+
+    console.log("Order and tickets created successfully.")
+  } catch (error) {
+    console.error("Transaction failed:", error)
+  } finally {
+    await prisma.$disconnect()
+  }
+}
+
+module.exports = { getAvailableBookings, insertOrderAndTicket }
