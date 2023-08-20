@@ -35,24 +35,19 @@ const Tickets = ({ navigation }) => {
           </View>
             
             <ScrollView style={styles.scrollContainer}>
-            {your_tickets.map((ticket) => (
-              <TicketCard
-                key={ticket.id}
-                travelTo={ticket.travelTo}
-                travelFrom={ticket.travelFrom}
-                ticketCount={ticket.ticketCount}
-                shipType={ticket.shipType}
-                ticketID={ticket.ticketID}
-                date={ticket.date}
-                imageSource={ticket.imageSource}
-              />
-      ))}
-            
-              
-
-
+              {your_tickets.map((ticket) => (
+                <TicketCard
+                  key={ticket.id}
+                  travelTo={ticket.travelTo}
+                  travelFrom={ticket.travelFrom}
+                  ticketCount={ticket.ticketCount}
+                  shipType={ticket.shipType}
+                  ticketID={ticket.ticketID}
+                  date={ticket.date}
+                  imageSource={ticket.imageSource}
+                />
+              ))}
             </ScrollView>
-
 
         </SafeAreaView>
       </ImageBackground>
