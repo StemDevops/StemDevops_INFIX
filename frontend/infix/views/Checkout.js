@@ -33,7 +33,7 @@ const CheckoutScreen = ({navigation}) => {
                     </TouchableOpacity>
                     </View>
                     <View>
-                    <Text style={styles.headertext}>Notifications</Text>
+                    <Text style={styles.headertext}>Checkout</Text>
                     </View>
                 </View>
 

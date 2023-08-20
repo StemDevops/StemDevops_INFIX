@@ -1,8 +1,9 @@
-import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {ScrollView, StyleSheet, Text, TouchableOpacity, View, TextInput} from "react-native";
 import InputTextField from "./InputTextField";
 import React, {useState} from "react";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-const RoundTrip = () => {
+const RoundTrip = ({navigation}) => {
 
     const [departure, setDeparture] = useState("");
     const [destination, setDestination] = useState("");
@@ -10,20 +11,91 @@ const RoundTrip = () => {
     const [arrivalDate, setArrivalDate] =useState("")
     const [travelMode, setTravelMode] = useState("Spaceship");
     const [ticketCount, setTicketCount] = useState(1);
+    const [isDepDatePickerVisible, setDepDatePickerVisibility] = useState(false);
+    const [isArrDatePickerVisible, setArrDatePickerVisibility] = useState(false);
+    const [travelModes, setTravelModes] = useState([
+        {key: 0,label: 'Space Bus',},
+        {key: 1,label: 'Helicarrier',},
+        {key: 2,label: 'Hyper Drive',},
 
+        ]);
+    const [tickets, setTickets] = useState([
+        {key: 0,label: 1,},
+        {key: 1,label: 2,},
+        {key: 2,label: 3,},
+        {key: 3,label: 4,},
+        {key: 4,label: 5,},
+        {key: 5,label: 6,},
+
+        ]);
+
+    const gotoCheckout =()=>{
+        navigation.navigate('Checkout');
+    }
+
+    const showDepDatePicker = () => {
+        setDepDatePickerVisibility(true);
+        };
+
+    const hideDepDatePicker = () => {
+        setDepDatePickerVisibility(false);
+        };
+
+    const handleDepConfirm = (date) => {
+        console.log("A date has been picked: ", date);
+        setDepartureDate(date.toLocaleDateString());
+        hideDepDatePicker();
+        };
+
+    const showArrDatePicker = () => {
+        setArrDatePickerVisibility(true);
+        };
+
+    const hideArrDatePicker = () => {
+        setArrDatePickerVisibility(false);
+        };
+
+    const handleArrConfirm = (date) => {
+        console.log("A date has been picked: ", date);
+        setArrivalDate(date.toLocaleDateString());
+        hideArrDatePicker();
+        };
+
+        
     return (
         <ScrollView style={styles.container} contentContainerStyle={{alignItems: 'center', paddingBottom: 200,}}>
             <View style={styles.inputContainer}>
-                <InputTextField value="Departure"/>
-                <InputTextField value="Destination"/>
+                <InputTextField placeholder="Departure" action={setDeparture} value={departure}/>
+                <InputTextField placeholder="Destination" action={setDestination} value={destination}/>
                 <View style={styles.dateContainer}>
-                        <InputTextField value="Departure date" style={styles.dateInput}/>
-                        <InputTextField value="Arrival date" style={styles.dateInput}/>
+                        <TouchableOpacity style={styles.inputContainer2} onPress={showDepDatePicker} >
+                            <TextInput placeholderTextColor={"#fff"} pointerEvents="none" style={styles.input} selectTextOnFocus={false} editable={false} placeholder="Departure Date" value={setDepartureDate}/>
+                        </TouchableOpacity>
+                        <DateTimePickerModal
+                            isVisible={isDepDatePickerVisible}
+                            mode="date"
+                            onConfirm={handleDepConfirm}
+                            onCancel={hideDepDatePicker}
+                            isDarkModeEnabled={true}
+                            minimumDate={new Date()}
+                        />
+                        <TouchableOpacity style={styles.inputContainer2} onPress={showArrDatePicker} >
+                            <TextInput placeholderTextColor={"#fff"} pointerEvents="none" style={styles.input} selectTextOnFocus={false} editable={false} placeholder="Arrival Date" value={arrivalDate}/>
+                        </TouchableOpacity>
+                    
+                        <DateTimePickerModal
+                            isVisible={isArrDatePickerVisible}
+                            mode="date"
+                            onConfirm={handleArrConfirm}
+                            onCancel={hideArrDatePicker}
+                            isDarkModeEnabled={true}
+                            minimumDate={new Date()}
+                        />
                 </View>
                 <InputTextField value="Travel mode"/>
                 <InputTextField value="Ticket count"/>
             </View>
-            <TouchableOpacity style={styles.checkoutContainer}>
+            <TouchableOpacity style={styles.checkoutContainer} onPress={gotoCheckout}>
                 <Text style={styles.checkoutText}>
                     Checkout
                 </Text>
@@ -102,7 +174,33 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
         fontWeight: "bold",
-    }
+    },inputContainer2: {
+        width: '48%',
+        flexDirection: "row",
+        alignItems: "center",
+        marginHorizontal: 10,
+        paddingLeft: 20,
+        marginVertical: 5,
+        elevation: 3,
+        shadowColor: "#000",
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.4,
+        shadowRadius: 2,
+        backgroundColor: "rgb(131,163,190)",
+        borderRadius: 50,
+        height: 50,
+        borderColor: "#2C5D87",
+        borderWidth: 1,
+    },
+    input: {
+        flex: 8,
+        width: "100%",
+        height: "100%",
+        fontSize: 16,
+        fontWeight: "bold",
+        paddingHorizontal: 10,
+        color: "rgb(255,255,255)",
+    },
 
 });
 export default RoundTrip;
