@@ -9,15 +9,13 @@ import TicketCard from '../components/TicketCard';
 const Tickets = ({ navigation }) => {
 
   const [your_tickets, set_your_tickets] = useState([
-    {id: 1, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
-    {id: 2, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
-    {id: 3, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
-    {id: 4, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
-    {id: 5, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
-    {id: 6, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
+    {id: 1, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '1',shipType: 'Air Bus',ticketID: '9801-94s3-2322',date:'2166-02-17', imageSource: require('../assets/card11.png')},
+    {id: 2, travelTo: "Mars", travelFrom:'Earth', ticketCount: '3',shipType: 'Air Bus',ticketID: '5701-9923-2322',date:'2166-02-28', imageSource: require('../assets/card13.png')},
+    {id: 3, travelTo: "Mars", travelFrom:'MZ 0054', ticketCount: '1',shipType: 'Air Bus',ticketID: '3759-5729-2322',date:'2166-05-19', imageSource: require('../assets/card6.png')},
+    {id: 4, travelTo: "Earth", travelFrom:'ZL 0043', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-7493',date:'2166-06-17', imageSource: require('../assets/card2.jpg')},
   ])
   const gotoBack = () => {
-    navigation.navigate('Home');
+    navigation.navigate('HomeScreen');
   }
     return (
       <ImageBackground source={bg} resizeMode="cover" style={styles.image}>
