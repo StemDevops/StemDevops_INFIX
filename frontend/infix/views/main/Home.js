@@ -1,14 +1,31 @@
-import React, {useState} from "react";
-import {StatusBar} from "expo-status-bar";
-import {View, StyleSheet, Text, ImageBackground, SafeAreaView, ScrollView, TouchableOpacity, Image} from "react-native";
-import Card from "../../components/card";
-import CardHorizontal from "../../components/cardHorizontal";
-import bg from '../../assets/home_bg.png';
-import cardimg from '../../assets/offer1.jpg';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import React, { useState } from "react"
+import { StatusBar } from "expo-status-bar"
+import {
+  View,
+  StyleSheet,
+  Text,
+  ImageBackground,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+} from "react-native"
+import Card from "../../components/card"
+import CardHorizontal from "../../components/cardHorizontal"
+import bg from "../../assets/home_bg.png"
+import cardimg from "../../assets/offer1.jpg"
+import Ionicons from "@expo/vector-icons/Ionicons"
+import { authContext } from "../../context/AuthContext"
 
-const Home = () => {
 
+const Home = ({navigation}) => {
+
+    const gotoTravel = () => {
+        navigation.navigate('Travel');
+    }
+    const gotoSearch = () => {
+        navigation.navigate('World Search');
+    }
     const [pop_destinations, set_pop_destinations] = useState([
         {id: 1, title: "Moon", image: require('../../assets/card1.png'),},
         {id: 2, title: "Jupiter", image: require('../../assets/card2.jpg'),},
@@ -40,18 +57,17 @@ const Home = () => {
                     <View><Text style={styles.headertextwelcome}>Welcome</Text>
                         <Text style={styles.headertext}>Josh Peter</Text>
                     </View>
-                    <TouchableOpacity>
-                        <Ionicons name="chatbubble-ellipses-outline" size={32}
-                                                color="white"/>
+                    <TouchableOpacity >
+                        <Ionicons name="chatbubble-ellipses-outline" size={32} color="white"/>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.buttonsContainer}>
-                    <TouchableOpacity style={styles.buttons}>
+                    <TouchableOpacity style={styles.buttons} onPress={gotoTravel}>
                         <Ionicons name="rocket-outline" size={32} color="#003A6B"/>
                         <Text style={styles.buttonsText}>Flights</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttons}>
+                    <TouchableOpacity style={styles.buttons} onPress={gotoSearch}>
                         <Ionicons name="search-outline" size={32} color="#003A6B"/>
                         <Text style={styles.buttonsText}>Search</Text>
                     </TouchableOpacity>
@@ -95,95 +111,91 @@ const Home = () => {
             </SafeAreaView>
         </ImageBackground>
     )
-
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-    },
-    image: {
-        flex: 1,
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#41729d',
-    },
-    header: {
-        width: '100%',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        marginTop: 30,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+  container: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+  },
+  image: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#41729d",
+  },
+  header: {
+    width: "100%",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    marginTop: 30,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  headertextwelcome: {
+    color: "#fff",
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+  headertext: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  buttonsContainer: {
+    width: "100%",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  buttons: {
+    width: "35%",
+    height: "45%",
+    backgroundColor: "#a9b6c4",
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 10,
+    borderStyle: "solid",
+    borderWidth: 3,
+    borderColor: "#ffffff",
+  },
+  buttonsText: {
+    color: "#003A6B",
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  vscroll: {
+    width: "100%",
+    marginTop: 10,
+    marginBottom: 30,
+  },
+  section: {
+    width: "100%",
+  },
+  sectionHeading: {
+    color: "#fff",
+    fontSize: 22,
+    fontWeight: "bold",
+    marginHorizontal: 20,
+  },
+  hscroll: {
+    width: "100%",
+    marginTop: 10,
+    paddingVertical: 10,
+  },
+  card: {
+    marginHorizontal: 20,
+  },
+  cardHorizontal: {
+    marginVertical: 20,
+  },
+  hscrollContainer: {
+    paddingBottom: 20,
+  },
+})
 
-    },
-    headertextwelcome: {
-        color: '#fff',
-        fontSize: 30,
-        fontWeight: 'bold',
-    },
-    headertext: {
-        color: '#fff',
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    buttonsContainer: {
-        width: '100%',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        flexDirection: 'row',
-        justifyContent: 'center',
-
-    },
-    buttons: {
-        width: '35%',
-        height: '45%',
-        backgroundColor: '#a9b6c4',
-        borderRadius: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginHorizontal: 10,
-        borderStyle: 'solid',
-        borderWidth: 3,
-        borderColor: '#ffffff',
-
-    },
-    buttonsText: {
-        color: '#003A6B',
-        fontSize: 15,
-        fontWeight: 'bold',
-
-    },
-    vscroll: {
-        width: '100%',
-        marginTop: 10,
-        marginBottom: 30,
-    },
-    section: {
-        width: '100%',
-    },
-    sectionHeading: {
-        color: '#fff',
-        fontSize: 22,
-        fontWeight: 'bold',
-        marginHorizontal: 20,
-    },
-    hscroll: {
-        width: '100%',
-        marginTop: 10,
-        paddingVertical: 10,
-    },
-    card: {
-        marginHorizontal: 20,
-    }, cardHorizontal: {
-        marginVertical: 20,
-    },
-    hscrollContainer: {
-        paddingBottom: 20,
-    }
-});
-
-export default Home;
+export default Home

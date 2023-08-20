@@ -19,6 +19,7 @@ const profileName = "Profile";
 const Tab = createBottomTabNavigator();
 
 function MainNav() {
+
     return (
         <NavigationContainer independent={true}>
             <Tab.Navigator
@@ -34,7 +35,7 @@ function MainNav() {
                             iconName = focused ? 'home' : 'home-outline';
 
                         } else if (rn === worldsearchName) {
-                            iconName = focused ? 'globe' : 'globe-outline';
+                            iconName = focused ? 'search' : 'search-outline';
 
                         } else if (rn === travelName) {
                             iconName = focused ? 'rocket' : 'rocket-outline';
@@ -76,7 +77,6 @@ function MainNav() {
                 <Tab.Screen name={travelName} component={TravelScreen}/>
                 <Tab.Screen name={notificationName} component={NotificationsScreen}/>
                 <Tab.Screen name={profileName} component={ProfileScreen}/>
-
             </Tab.Navigator>
         </NavigationContainer>
     );

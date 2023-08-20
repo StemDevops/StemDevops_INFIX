@@ -14,6 +14,12 @@ const ProfileScreen = ({navigation}) => {
         logout();
     }
 
+    const gotoNotifications = () => {
+        navigation.navigate('Notifications');
+    }
+    const gotoSettings = () => {
+        navigation.navigate('Settings');
+    }
     return (
         <ImageBackground source={bg} resizeMode="cover" style={styles.image}>
             <SafeAreaView style={styles.container}>
@@ -23,10 +29,10 @@ const ProfileScreen = ({navigation}) => {
                             <Text style={styles.headertextwelcome}>Josh Peter</Text>
                         </View>
                         <View style={styles.headerBtnContainer}>
-                            <TouchableOpacity>
-                                <Ionicons name="heart-outline" size={32} color="white"/>
+                            <TouchableOpacity onPress={gotoNotifications}>
+                                <Ionicons name="heart-outline" size={32} color="white" />
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={gotoSettings}>
                                 <Ionicons name="settings-outline" size={32} color="white"/>
                             </TouchableOpacity>
                         </View>
