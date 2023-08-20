@@ -29,8 +29,8 @@ const Login = ({ navigation }) => {
       universal_id: uid,
       password: password,
     }
-
-    Axios.post("http://192.168.8.165:3002/user/login", loginData)
+    /*
+    Axios.post("http://192.168.8.140:3002/user/login", loginData)
       .then((response) => {
         // Handle the response from the backend if needed
         if (response.data.approved === true) {
@@ -44,6 +44,10 @@ const Login = ({ navigation }) => {
         // Handle errors if the login fails
         console.error("Login error:", error)
       })
+      */
+      login('Thejan')
+     
+
   }
 
   const gotoSignup = () => {

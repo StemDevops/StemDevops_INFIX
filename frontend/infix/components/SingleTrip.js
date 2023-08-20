@@ -13,12 +13,6 @@ import { TextInput } from "react-native-gesture-handler"
 import ModalSelector from "react-native-modal-selector"
 import Axios from "axios"
 
-import {Text, View, StyleSheet, ScrollView, TouchableOpacity, Button} from "react-native";
-import InputTextField from "./InputTextField";
-import React, {useState} from "react";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { TextInput } from "react-native-gesture-handler";
-import ModalSelector from 'react-native-modal-selector'
 
 const SingleTrip = ({navigation}) => {
 
@@ -64,7 +58,7 @@ const SingleTrip = ({navigation}) => {
       travelMode: travelMode,
       ticketCount: ticketCount,
     })
-  }
+  
 
   const showDatePicker = () => {
     setDatePickerVisibility(true)

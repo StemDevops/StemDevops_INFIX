@@ -20,7 +20,7 @@ export default WorldSearchScreen = ({ navigation }) => {
 
   const handleTextChange = (text) => {
     setInputText(text) // Update inputText state
-    Axios.get("http://192.168.8.165:3002/destination/search", {
+    Axios.get("http://192.168.8.140:3002/destination/search", {
       params: {
         searchEntry: text, // assuming "searchTerm" is the query parameter name expected by the backend
       },
