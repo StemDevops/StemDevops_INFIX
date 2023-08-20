@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, LayoutAnimation, StyleSheet, Image, TouchableWithoutFeedback, Animated, Platform, ImageBackground} from 'react-native';
 import logo from '../assets/Logo.png';
-import ticketBackground from '../assets/TicketCard_bg.png';
+
 const TicketCard = ({travelTo, travelFrom, ticketCount,shipType,ticketID,date, imageSource }) => {
     const [expanded, setExpanded] = useState(false);
     const ticketContainerHeight = (expanded ? 230 : 85);
