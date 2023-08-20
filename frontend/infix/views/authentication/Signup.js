@@ -1,5 +1,4 @@
 import React from "react"
-import { StatusBar } from "expo-status-bar"
 import {
   View,
   StyleSheet,
@@ -16,10 +15,10 @@ import AuthInput from "../../components/AuthInput"
 import AuthButton from "../../components/AuthButton"
 import Logo from "../../assets/Logo.png"
 import Axios from "axios" // Import the axios library for making HTTP requests
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Signup = ({ navigation }) => {
   const [universalId, setUniversalId] = React.useState("")
-  const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
   const [confirmPassword, setConfirmPassword] = React.useState("")
   const [name, setName] = React.useState("")
@@ -59,7 +58,16 @@ const Signup = ({ navigation }) => {
 
   return (
     <ImageBackground source={bg} resizeMode="cover" style={styles.image}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "null" : "null"}
+      >
       <SafeAreaView style={styles.container}>
+        <View style={styles.BtnContainer}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="arrow-back" size={32} color="white"/>
+          </TouchableOpacity>
+        </View>
         <Image style={styles.globe} source={Globe} />
         <View style={styles.headerContainer}>
           <Text style={styles.header}>Signup</Text>
@@ -70,7 +78,7 @@ const Signup = ({ navigation }) => {
             <Text style={styles.signupLink}> Login</Text>
           </TouchableOpacity>
         </View>
-        <KeyboardAvoidingView style={styles.container}>
+        <View style={styles.container}>
           <View style={styles.inputContainer}>
             <AuthInput
               placeholder="Universal ID"
@@ -100,9 +108,9 @@ const Signup = ({ navigation }) => {
           <View style={styles.buttonContainer}>
             <AuthButton text="Sign Up" action={handleSignup} />
           </View>
-        </KeyboardAvoidingView>
+        </View>
         <Image style={styles.Logo} source={Logo} />
-      </SafeAreaView>
+      </SafeAreaView></KeyboardAvoidingView>
     </ImageBackground>
   )
 }
@@ -120,11 +128,15 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  BtnContainer: {
+    alignSelf: 'flex-start',
+    margin: 30,
+    marginBottom: 0,
+},
   globe: {
     width: 100,
     height: 100,
-    marginBottom: 20,
-    marginTop: 50,
+    marginVertical: 15,
   },
   headerContainer: {
     marginBottom: 30,

@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import bg from "../assets/home_bg.png";
-import InputTextField from "../components/InputTextField";
 import SingleTrip from "../components/SingleTrip";
 import RoundTrip from "../components/RoundTrip";
 import MultiTrip from "../components/MultiTrip";
@@ -46,12 +45,15 @@ const TravelScreen = ({navigation}) => {
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.button} onPress={handleButtonClickSingle}>
                             <Text style={styles.buttonText}>ONE-WAY</Text>
+                            {buttonClicked === "Single" && <View style={styles.underline}/>}
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button} onPress={handleButtonClickRound}>
                             <Text style={styles.buttonText}>ROUND-TRIP</Text>
+                            {buttonClicked === "Round" && <View style={styles.underline}/>}
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button} onPress={handleButtonClickMulti}>
                             <Text style={styles.buttonText}>MULTI-PLANET</Text>
+                            {buttonClicked === "Multi" && <View style={styles.underline}/>}
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -86,6 +88,18 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         backgroundColor: "#41729d",
+    },
+    
+    underline:{
+        width: "80%",
+        height: 2,
+        backgroundColor: "#dbe9f5",
+        shadowColor: "#dbe9f5",
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.9,
+        shadowRadius: 5,
+        elevation: 10,
+        marginTop: 2,
     },
     header: {
         width: "100%",

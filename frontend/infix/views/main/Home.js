@@ -13,13 +13,16 @@ import {
 import Card from "../../components/card"
 import CardHorizontal from "../../components/cardHorizontal"
 import bg from "../../assets/home_bg.png"
-import cardimg from "../../assets/offer1.jpg"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import { authContext } from "../../context/AuthContext"
 
 const Home = ({ navigation }) => {
   const gotoTravel = () => {
     navigation.navigate("Travel")
+  }
+
+  const gotoYourTickets = () => {
+    navigation.navigate("yourTickets")
   }
 
   const { isAuthenticated, login, user} = React.useContext(authContext)
@@ -57,13 +60,22 @@ const Home = ({ navigation }) => {
             <Text style={styles.headertextwelcome}>Welcome</Text>
             <Text style={styles.headertext}>{user}</Text>
           </View>
-          <TouchableOpacity>
+          <View style={styles.iconContainer}>
+          <TouchableOpacity style={{padding:10}}>
             <Ionicons
               name="chatbubble-ellipses-outline"
               size={32}
               color="white"
             />
           </TouchableOpacity>
+          <TouchableOpacity style={{padding:10}} onPress={gotoYourTickets}>
+            <Ionicons
+              name="book"
+              size={32}
+              color="white"
+            />
+          </TouchableOpacity>
+          </View>
         </View>
 
         <View style={styles.buttonsContainer}>
@@ -146,6 +158,10 @@ const Home = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+  iconContainer:{
+    flexDirection: "row",
+
+  },
   container: {
     flex: 1,
     width: "100%",
