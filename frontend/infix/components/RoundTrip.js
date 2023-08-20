@@ -39,114 +39,104 @@ const RoundTrip = ({navigation}) => {
         }
         navigation.navigate('Checkout');
     }
-    //Runs only on the first render
-  // , [departure, destination, departureDate, arrivalDate])
 
+    const showDepDatePicker = () => {
+        setDepDatePickerVisibility(true);
+        };
 
-  const showDepDatePicker = () => {
-    setDepDatePickerVisibility(true)
-  }
+    const hideDepDatePicker = () => {
+        setDepDatePickerVisibility(false);
+        };
 
-  const hideDepDatePicker = () => {
-    setDepDatePickerVisibility(false)
-  }
+    const handleDepConfirm = (date) => {
+        console.log("A date has been picked: ", date);
+        setDepartureDate(date.toLocaleDateString());
+        hideDepDatePicker();
+        };
 
-  const handleDepConfirm = (date) => {
-    console.log("A date has been picked: ", date)
-    setDepartureDate(date.toLocaleDateString())
-    hideDepDatePicker()
-  }
+    const showArrDatePicker = () => {
+        setArrDatePickerVisibility(true);
+        };
 
-  const showArrDatePicker = () => {
-    setArrDatePickerVisibility(true)
-  }
+    const hideArrDatePicker = () => {
+        setArrDatePickerVisibility(false);
+        };
+
+    const handleArrConfirm = (date) => {
+        console.log("A date has been picked: ", date);
+        setArrivalDate(date.toLocaleDateString());
+        hideArrDatePicker();
+        };
 
         
-    retur
-  return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={{ alignItems: "center", paddingBottom: 200 }}
-    >
-      <View style={styles.inputContainer}>
-        <InputTextField
-          placeholder="Departure"
-          action={setDeparture}
-          value={departure}
-        />
-        <InputTextField
-          placeholder="Destination"
-          action={setDestination}
-          value={destination}
-        />
-        <View style={styles.dateContainer}>
-          <TouchableOpacity
-            style={styles.inputContainer2}
-            onPress={showDepDatePicker}
-          >
-            <TextInput
-              placeholderTextColor={"#fff"}
-              pointerEvents="none"
-              style={styles.input}
-              selectTextOnFocus={false}
-              editable={false}
-              placeholder="Departure Date"
-              value={departureDate}
-            />
-          </TouchableOpacity>
-          <DateTimePickerModal
-            isVisible={isDepDatePickerVisible}
-            mode="date"
-            onConfirm={handleDepConfirm}
-            onCancel={hideDepDatePicker}
-            isDarkModeEnabled={true}
-            minimumDate={new Date()}
-          />
-          <TouchableOpacity
-            style={styles.inputContainer2}
-            onPress={showArrDatePicker}
-          >
-            <TextInput
-              placeholderTextColor={"#fff"}
-              pointerEvents="none"
-              style={styles.input}
-              selectTextOnFocus={false}
-              editable={false}
-              placeholder="Arrival Date"
-              value={arrivalDate}
-            />
-          </TouchableOpacity>
+    return (
+        <ScrollView style={styles.container} contentContainerStyle={{alignItems: 'center', paddingBottom: 200,}}>
+            <View style={styles.inputContainer}>
+                <InputTextField placeholder="Departure" action={setDeparture} value={departure}/>
+                <InputTextField placeholder="Destination" action={setDestination} value={destination}/>
+                <View style={styles.dateContainer}>
+                        <TouchableOpacity style={styles.inputContainer2} onPress={showDepDatePicker} >
+                            <TextInput placeholderTextColor={"#fff"} pointerEvents="none" style={styles.input} selectTextOnFocus={false} editable={false} placeholder="Departure Date" value={departureDate}/>
+                        </TouchableOpacity>
+                        <DateTimePickerModal
+                            isVisible={isDepDatePickerVisible}
+                            mode="date"
+                            onConfirm={handleDepConfirm }
+                            onCancel={hideDepDatePicker}
+                            isDarkModeEnabled={true}
+                            minimumDate={new Date()}
+                        />
+                        <TouchableOpacity style={styles.inputContainer2} onPress={showArrDatePicker} >
+                            <TextInput placeholderTextColor={"#fff"} pointerEvents="none" style={styles.input} selectTextOnFocus={false} editable={false} placeholder="Arrival Date" value={arrivalDate}/>
+                        </TouchableOpacity>
+                    
+                        <DateTimePickerModal
+                            isVisible={isArrDatePickerVisible}
+                            mode="date"
+                            onConfirm={handleArrConfirm}
+                            onCancel={hideArrDatePicker}
+                            isDarkModeEnabled={true}
+                            minimumDate={new Date()}
+                        />
 
-          <DateTimePickerModal
-            isVisible={isArrDatePickerVisible}
-            mode="date"
-            onConfirm={handleArrConfirm}
-            onCancel={hideArrDatePicker}
-            isDarkModeEnabled={true}
-            minimumDate={new Date()}
-          />
-        </View>
-        <InputTextField value="Travel mode" />
-        <InputTextField value="Ticket count" />
-      </View>
-      <TouchableOpacity style={styles.checkoutContainer} onPress={gotoCheckout}>
-        <Text style={styles.checkoutText}>Checkout</Text>
-      </TouchableOpacity>
-      <View style={styles.divider}></View>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.detailsText}>
-          Lunar days can be scorching hot, while nights are freezing cold.
-          Radiation from the Sun and cosmic rays is a constant concern. To
-          combat these challenges, colony habitats would be equipped with
-          advanced climate control systems, insulation, and radiation shielding.
-          Renewable energy sources such as solar panels and possibly even
-          harnessing lunar resources for energy generation would be crucial. The
-          thin lunar atmosphere might be harnessed for limited agricultural
-          purposes, using controlled hydroponic or aeroponic systems.
-        </Text>
-      </View>
-    </ScrollView>
-  )
+                </View>
+                <ModalSelector                    
+                    style={[styles.inputContainer2, {width: '100%'}]}
+                    data={travelModes}
+                    initValue="Travel Mode"
+                    initValueTextStyle={{color: '#fff', fontSize: 16, fontWeight: 'bold', }}
+                    selectStyle={{borderColor: 'transparent'}}
+                    selectTextStyle={{color: '#fff', fontSize: 16, fontWeight: 'bold', }}
+                    onChange={(option)=>{ setTravelMode(option.label)}} />
+                <ModalSelector                
+                    style={[styles.inputContainer2, {width: '100%'}]}
+                    data={tickets}
+                    initValue="Number of tickets"
+                    initValueTextStyle={{color: '#fff', fontSize: 16, fontWeight: 'bold', }}
+                    selectStyle={{borderColor: 'transparent'}}
+                    selectTextStyle={{color: '#fff', fontSize: 16, fontWeight: 'bold', }}
+                    onChange={(option)=>{ setTicketCount(option.label)}} />
+            </View>
+            <TouchableOpacity style={styles.checkoutContainer} onPress={gotoCheckout}>
+
+                <Text style={styles.checkoutText}>
+                    Checkout
+                </Text>
+            </TouchableOpacity>
+            <View style={styles.divider}></View>
+            <View style={styles.detailsContainer}>
+                <Text style={styles.detailsText}>
+                    Lunar days can be scorching hot, while nights are freezing cold. Radiation from the Sun and cosmic
+                    rays is a constant concern.
+
+                    To combat these challenges, colony habitats would be equipped with advanced climate control systems,
+                    insulation, and radiation shielding. Renewable energy sources such as solar panels and possibly even
+                    harnessing lunar resources for energy generation would be crucial. The thin lunar atmosphere might
+                    be harnessed for limited agricultural purposes, using controlled hydroponic or aeroponic systems.
+                </Text>
+            </View>
+        </ScrollView>
+    )
 }
 
 const styles = StyleSheet.create({
