@@ -3,10 +3,10 @@ import InputTextField from "./InputTextField";
 import React, {useState} from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-const MultiTrip = () => {
+const MultiTrip = ({navigation}) => {
 
-    const [count, setCount] = useState(1)
-
+    const [count, setCount] = useState(1);
+    const [trip, setTrip] = useState([{from: null, to: null, date: null}]);
     const returnTopField = () => {
         return Array.from({ length: count }, (_, i) => (
             <View style={styles.dateContainer} key={i}>
@@ -18,21 +18,44 @@ const MultiTrip = () => {
     }
 
     const addTrip =()=>{
-        setCount(count+1);
+
+        if(count<4)
+            setCount(count+1);
+    }
+
+    const removeTrip =()=>{
+        if(count>1)
+            setCount(count-1);
+    }
+
+    const gotoCheckout =()=>{
+        navigation.navigate('Checkout');
+
     }
 
     return (
         <ScrollView style={styles.container} contentContainerStyle={{alignItems: 'center', paddingBottom: 200,}}>
             <View style={styles.inputContainer}>
                 {returnTopField()}
+
+                <View style={{flexDirection: 'row', justifyContent: 'space-between', width: '90%'}}>
+
                 <TouchableOpacity style={styles.addTripContainer} onPress={addTrip}>
                     <Ionicons name="add-circle-outline" size={32} color="#FFFFFFD3"/>
                     <Text style={styles.addTripText}>Add trip</Text>
                 </TouchableOpacity>
+
+
+                <TouchableOpacity style={styles.addTripContainer} onPress={removeTrip}>
+                    <Ionicons name="add-circle-outline" size={32} color="#FFFFFFD3"/>
+                    <Text style={styles.addTripText}>Remove trip</Text>
+                </TouchableOpacity>
+                </View>
                 <InputTextField value="Travel mode"/>
                 <InputTextField value="Ticket count"/>
             </View>
-            <TouchableOpacity style={styles.checkoutContainer}>
+            <TouchableOpacity style={styles.checkoutContainer} onPress={gotoCheckout}>
+
                 <Text style={styles.checkoutText}>
                     Checkout
                 </Text>

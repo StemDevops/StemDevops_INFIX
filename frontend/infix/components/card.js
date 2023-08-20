@@ -6,12 +6,12 @@ const Card = ({imageSource, title}) => {
     const [imgLoaded, setImgLoaded] = React.useState(false);
 
     return (
-        <TouchableOpacity style={styles.card}>
+        <View style={styles.card}>
                 <Image source={imageSource} style={styles.image} onLoad={() => setImgLoaded(true)}/>
             {!imgLoaded &&
                 <ActivityIndicator style={styles.loader}/>}
             <Text style={styles.title}>{title}</Text>
-        </TouchableOpacity>
+        </View>
     );
 };
 

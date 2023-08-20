@@ -5,10 +5,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 // Screens
 import HomeScreen from '../views/main/Home';
 import WorldSearchScreen from '../views/WorldSearchScreen';
-import TravelScreen from '../views/TravelScreen';
 import NotificationsScreen from '../views/NotificationsScreen';
-import ProfileScreen from '../views/ProfileScreen';
-
+import ProfileNav from './ProfileNav';
+import TravelNav from './TravelNav';
 //Screen names
 const homeName = "Home";
 const worldsearchName = "World Search";
@@ -74,9 +73,9 @@ function MainNav() {
 
                 <Tab.Screen name={homeName} component={HomeScreen}/>
                 <Tab.Screen name={worldsearchName} component={WorldSearchScreen}/>
-                <Tab.Screen name={travelName} component={TravelScreen}/>
+                <Tab.Screen name={travelName} component={TravelNav}/>
                 <Tab.Screen name={notificationName} component={NotificationsScreen}/>
-                <Tab.Screen name={profileName} component={ProfileScreen}/>
+                <Tab.Screen name={profileName} component={ProfileNav}/>
             </Tab.Navigator>
         </NavigationContainer>
     );
