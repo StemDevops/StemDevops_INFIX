@@ -76,8 +76,8 @@ const MemoryView = ({navigation}) => {
                         ref={(c) => { this._carousel = c; }}
                         data={entries}
                         renderItem={renderItem}
-                        sliderWidth={500}
-                        itemWidth={300}
+                        sliderWidth={600}
+                        itemWidth={400}
                         layout={'stack'}
                     />
                 </View>
@@ -195,11 +195,11 @@ const styles = StyleSheet.create({
     },
     memoryContainer: {
         width: '90%',
-        height: 200,
+        height: 300,
         alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        marginTop: 30,
+        paddingHorizontal: 5,
+        paddingVertical: 0,
+        marginTop: 20,
         justifyContent: 'space-between',
         borderRadius: 20,
     },
@@ -249,14 +249,14 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     slide: {
-        width: 300,
+        width: 400,
         height: "100%",
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 20,
     },
     slideImg: {
-        width: 300,
+        width: 350,
         height: "100%",
         borderRadius: 20,
     },
