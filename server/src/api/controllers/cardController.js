@@ -30,6 +30,7 @@ const getUserCards = async (req, res) => {
   const userCards = await getCard(universal_id)
   if (userCards) {
     console.log("Cards fetched succesfully")
+    console.log(userCards)
     return res.send({ approved: true })
   }
 }
