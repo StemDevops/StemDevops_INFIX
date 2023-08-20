@@ -26,50 +26,11 @@ import card7 from "../assets/card11.png"
 
 
 const ProfileScreen = ({ navigation }) => {
-  const { isAuthenticated, logout, user } = React.useContext(authContext)
+  const {  logout, user } = React.useContext(authContext)
+  
   const onLogoutPressed = () => {
     logout()
   }
-
-  const gotoNotifications = () => {
-    navigation.navigate("Notifications")
-  }
-  const gotoSettings = () => {
-    navigation.navigate("Settings")
-  }
-  return (
-    <ImageBackground source={bg} resizeMode="cover" style={styles.image}>
-      <SafeAreaView style={styles.container}>
-        <ScrollView
-          style={{ width: "100%" }}
-          contentContainerStyle={{ alignItems: "center", paddingBottom: 50 }}
-        >
-          <View style={styles.header}>
-            <View>
-              <Text style={styles.headertextwelcome}>{user}</Text>
-            </View>
-            <View style={styles.headerBtnContainer}>
-              <TouchableOpacity onPress={gotoNotifications}>
-                <Ionicons name="heart-outline" size={32} color="white" />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={gotoSettings}>
-                <Ionicons name="settings-outline" size={32} color="white" />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.detailSection}>
-            <Image source={profile} style={styles.profileImg} />
-            <View style={styles.profileDetailsContainer}>
-              <View style={styles.profileDetails}>
-                <Ionicons name="pricetag-outline" size={25} color="white" />
-                <Text style={styles.profileDetailsText}>101 Memories</Text>
-              </View>
-              <View style={styles.profileDetails}>
-                <Ionicons name="medal-outline" size={25} color="white" />
-                <Text style={styles.profileDetailsText}>58 Points</Text>
-              </View>
-            </View>
-          </View>
 
     const gotoNotifications = () => {
         navigation.navigate('Notifications');
@@ -88,7 +49,7 @@ const ProfileScreen = ({ navigation }) => {
                 <ScrollView style={{width: '100%'}} contentContainerStyle={{alignItems: "center", paddingBottom: 50}}>
                     <View style={styles.header}>
                         <View>
-                            <Text style={styles.headertextwelcome}>Josh Peter</Text>
+                            <Text style={styles.headertextwelcome}>{user}</Text>
                         </View>
                         <View style={styles.headerBtnContainer}>
                             <TouchableOpacity onPress={gotoNotifications}>
