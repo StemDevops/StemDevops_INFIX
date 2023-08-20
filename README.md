@@ -7,7 +7,7 @@ Welcome to INFIX, the ticket booking app for interplanetary travel in the year 2
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [API Documentation](#api-documentation)
+- [Contributors](#Contributors)
 - [Contact](#contact)
 
 ## Getting Started
@@ -29,9 +29,6 @@ To get started with INFIX, follow these steps to set up the development environm
 2. Launch the Expo app on your mobile device or emulator.
 3. Explore the available destinations, view details, and book tickets.
 4. Experience the futuristic world of interplanetary travel!
-
-## API Documentation
-For details on the API endpoints and how to interact with the server, refer to the API documentation provided in the `server` folder.
 
   
 ## Contributors
