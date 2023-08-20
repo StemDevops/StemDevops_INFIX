@@ -9,15 +9,15 @@ import TicketCard from '../components/TicketCard';
 const Tickets = ({ navigation }) => {
 
   const [your_tickets, set_your_tickets] = useState([
-    {id: 1, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
-    {id: 2, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
-    {id: 3, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
-    {id: 4, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
-    {id: 5, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
-    {id: 6, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
+    {id: 1, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card11.png')},
+    {id: 2, travelTo: "Mars", travelFrom:'Earth', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card13.png')},
+    {id: 3, travelTo: "Moon 0001", travelFrom:'ZL 0043', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card11.png')},
+    {id: 4, travelTo: "Mars", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card6.png')},
+    {id: 5, travelTo: "Earth", travelFrom:'ZL 0043', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
+    {id: 6, travelTo: "Moon 0001", travelFrom:'Mars', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card11.png')},
   ])
   const gotoBack = () => {
-    navigation.navigate('Home');
+    navigation.navigate('HomeScreen');
   }
     return (
       <ImageBackground source={bg} resizeMode="cover" style={styles.image}>

@@ -22,7 +22,7 @@ const Home = ({ navigation }) => {
   }
 
   const gotoYourTickets = () => {
-    navigation.navigate("yourTickets")
+    navigation.navigate("Tickets")
   }
 
   const { isAuthenticated, login, user} = React.useContext(authContext)

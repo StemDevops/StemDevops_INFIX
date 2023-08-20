@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Screens
-import HomeScreen from '../views/main/Home';
+import HomeNav from './HomeNav';
 import WorldSearchScreen from '../views/WorldSearchScreen';
 import NotificationsScreen from '../views/NotificationsScreen';
 import ProfileNav from './ProfileNav';
@@ -71,7 +71,7 @@ function MainNav() {
                 /* Navigation Bar */
             >
 
-                <Tab.Screen name={homeName} component={HomeScreen}/>
+                <Tab.Screen name={homeName} component={HomeNav}/>
                 <Tab.Screen name={worldsearchName} component={WorldSearchScreen}/>
                 <Tab.Screen name={travelName} component={TravelNav}/>
                 <Tab.Screen name={notificationName} component={NotificationsScreen}/>
