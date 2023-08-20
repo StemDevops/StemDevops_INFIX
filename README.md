@@ -39,6 +39,14 @@ We welcome contributions from the community to improve and enhance INFIX. To con
 - Fork this repository and create a new branch.
 - Make your changes and test thoroughly.
 - Submit a pull request, describing your changes and their benefits.
+  
+## Contributors
+We extend our heartfelt appreciation to the following contributors who have helped shape and improve the INFIX project:
+- [Samith Karunathilake](https://github.com/contributor1)
+- [Contributor 2](https://github.com/contributor2)
+- [Contributor 3](https://github.com/contributor3)
+- [Contributor 3](https://github.com/contributor3)
+- [Omalya Vidushini](https://github.com/OmalyaV)
 
 ## Contact
 For any inquiries or support, please contact the Team StemDevops at [INSERT CONTACT EMAIL].
