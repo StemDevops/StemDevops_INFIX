@@ -7,8 +7,7 @@ import HomeScreen from '../views/main/Home';
 import WorldSearchScreen from '../views/WorldSearchScreen';
 import TravelScreen from '../views/TravelScreen';
 import NotificationsScreen from '../views/NotificationsScreen';
-import ProfileScreen from '../views/ProfileScreen';
-
+import ProfileNav from './ProfileNav';
 //Screen names
 const homeName = "Home";
 const worldsearchName = "World Search";
@@ -76,7 +75,7 @@ function MainNav() {
                 <Tab.Screen name={worldsearchName} component={WorldSearchScreen}/>
                 <Tab.Screen name={travelName} component={TravelScreen}/>
                 <Tab.Screen name={notificationName} component={NotificationsScreen}/>
-                <Tab.Screen name={profileName} component={ProfileScreen}/>
+                <Tab.Screen name={profileName} component={ProfileNav}/>
             </Tab.Navigator>
         </NavigationContainer>
     );

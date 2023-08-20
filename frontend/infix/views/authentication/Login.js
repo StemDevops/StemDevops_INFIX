@@ -29,20 +29,22 @@ const Login = ({ navigation }) => {
       password: password,
     }
 
-    Axios.post("http://192.168.8.165:3002/user/login", loginData)
-      .then((response) => {
-        // Handle the response from the backend if needed
-        if (response.data.approved === true) {
-          console.log("Login successful:", response.data.approved)
-          login(response.data.username)
-        } else {
-          console.log("Login unsuccessful:", response.data.approved)
-        }
-      })
-      .catch((error) => {
-        // Handle errors if the login fails
-        console.error("Login error:", error)
-      })
+    // Axios.post("http://192.168.8.165:3002/user/login", loginData)
+    //   .then((response) => {
+    //     // Handle the response from the backend if needed
+    //     if (response.data.approved === true) {
+    //       console.log("Login successful:", response.data.approved)
+    //       login(response.data.username)
+    //     } else {
+    //       console.log("Login unsuccessful:", response.data.approved)
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     // Handle errors if the login fails
+    //     console.error("Login error:", error)
+    //   })
+
+    login({user: 'vkjskf'})
   }
 
   const gotoSignup = () => {

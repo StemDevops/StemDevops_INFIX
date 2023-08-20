@@ -20,6 +20,11 @@ const ProfileScreen = ({navigation}) => {
     const gotoSettings = () => {
         navigation.navigate('Settings');
     }
+
+    const gotoMemoryView = () => {
+        console.log("gotoMemoryView");
+        navigation.navigate('MemoryView');
+    }
     return (
         <ImageBackground source={bg} resizeMode="cover" style={styles.image}>
             <SafeAreaView style={styles.container}>
@@ -75,26 +80,26 @@ const ProfileScreen = ({navigation}) => {
                         <View style={styles.yourMemories}>
                             <ScrollView horizontal={true} contentContainerStyle={{paddingHorizontal: 10}}>
                                 <View>
-                                    <TouchableOpacity style={styles.yourMemoriesCard}>
+                                    <TouchableOpacity style={styles.yourMemoriesCard} onPress={gotoMemoryView}>
                                         <Card title="Earth" imageSource={earth}/>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.yourMemoriesCard}>
-                                        <Card title="Earth" imageSource={earth}/>
-                                    </TouchableOpacity>
-                                </View>
-                                <View>
-                                    <TouchableOpacity style={styles.yourMemoriesCard}>
-                                        <Card title="Earth" imageSource={earth}/>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={styles.yourMemoriesCard}>
+                                    <TouchableOpacity style={styles.yourMemoriesCard} onPress={gotoMemoryView}>
                                         <Card title="Earth" imageSource={earth}/>
                                     </TouchableOpacity>
                                 </View>
                                 <View>
-                                    <TouchableOpacity style={styles.yourMemoriesCard}>
+                                    <TouchableOpacity style={styles.yourMemoriesCard} onPress={gotoMemoryView}>
                                         <Card title="Earth" imageSource={earth}/>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.yourMemoriesCard}>
+                                    <TouchableOpacity style={styles.yourMemoriesCard} onPress={gotoMemoryView}>
+                                        <Card title="Earth" imageSource={earth}/>
+                                    </TouchableOpacity>
+                                </View>
+                                <View>
+                                    <TouchableOpacity style={styles.yourMemoriesCard} onPress={gotoMemoryView}>
+                                        <Card title="Earth" imageSource={earth}/>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={styles.yourMemoriesCard} onPress={gotoMemoryView}>
                                         <Card title="Earth" imageSource={earth}/>
                                     </TouchableOpacity>
                                 </View>
