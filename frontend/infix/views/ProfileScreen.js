@@ -12,9 +12,18 @@ import React from "react"
 import { authContext } from "../context/AuthContext"
 import bg from "../assets/home_bg.png"
 import profile from "../assets/profile.png"
-import earth from "../assets/card2.jpg"
 import Ionicons from "@expo/vector-icons/Ionicons"
 import Card from "../components/card"
+
+import earth from "../assets/card2.jpg"
+import card1 from "../assets/card.png"
+import card2 from "../assets/card3.png"
+import card3 from "../assets/card4.png"
+import card4 from "../assets/card13.png"
+import card5 from "../assets/card6.png"
+import card6 from "../assets/card1.png"
+import card7 from "../assets/card11.png"
+
 
 const ProfileScreen = ({ navigation }) => {
   const { isAuthenticated, logout, user } = React.useContext(authContext)
@@ -65,7 +74,7 @@ const ProfileScreen = ({ navigation }) => {
           <View style={styles.divider}></View>
 
           <View style={styles.memoryContainer}>
-            <Image source={earth} style={styles.memoryImage} />
+            <Image source={card7} style={styles.memoryImage} />
             <View style={styles.memoryDetailsContainer}>
               <Text style={styles.memoryText}>Current Memory</Text>
               <Text style={styles.memoryText}>Jupiter</Text>
@@ -82,7 +91,7 @@ const ProfileScreen = ({ navigation }) => {
           <View style={styles.divider}></View>
 
           <View style={styles.youMemoriesContainer}>
-            <Text style={styles.yourMemoriesHeading}>You Memories</Text>
+            <Text style={styles.yourMemoriesHeading}>Your Memories</Text>
             <View style={styles.yourMemories}>
               <ScrollView
                 horizontal={true}
@@ -90,40 +99,40 @@ const ProfileScreen = ({ navigation }) => {
               >
                 <View>
                   <TouchableOpacity style={styles.yourMemoriesCard}>
-                    <Card title="Earth" imageSource={earth} />
+                    <Card title="Saturn" imageSource={card4} />
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.yourMemoriesCard}>
-                    <Card title="Earth" imageSource={earth} />
-                  </TouchableOpacity>
-                </View>
-                <View>
-                  <TouchableOpacity style={styles.yourMemoriesCard}>
-                    <Card title="Earth" imageSource={earth} />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.yourMemoriesCard}>
-                    <Card title="Earth" imageSource={earth} />
+                    <Card title="Moon 0034" imageSource={card1} />
                   </TouchableOpacity>
                 </View>
                 <View>
                   <TouchableOpacity style={styles.yourMemoriesCard}>
-                    <Card title="Earth" imageSource={earth} />
+                    <Card title="Space X99" imageSource={card5} />
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.yourMemoriesCard}>
-                    <Card title="Earth" imageSource={earth} />
+                    <Card title="Moon 2069" imageSource={card6} />
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity style={styles.yourMemoriesCard}>
+                    <Card title="ZL 0043" imageSource={card2} />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.yourMemoriesCard}>
+                    <Card title="Earth" imageSource={card3} />
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity style={styles.yourMemoriesCard}>
+                    <Card title="Jupiter" imageSource={card7} />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.yourMemoriesCard}>
+                    <Card title="Mars" imageSource={earth} />
                   </TouchableOpacity>
                 </View>
               </ScrollView>
             </View>
           </View>
 
-          <View style={styles.logoutBtnContainer}>
-            <TouchableOpacity
-              onPress={onLogoutPressed}
-              style={styles.logoutBtn}
-            >
-              <Text style={styles.logoutBtnText}>Logout</Text>
-            </TouchableOpacity>
-          </View>
         </ScrollView>
       </SafeAreaView>
     </ImageBackground>
