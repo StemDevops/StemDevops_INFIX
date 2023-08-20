@@ -10,12 +10,19 @@ export default SettingsScreen = ({ navigation }) => {
     
     const [UID, setUID] = useState('123456789ABCD');
 
+    const gotoBack = () => {
+        navigation.navigate("ProfileScreen")
+      }
+    const handleLogout = () => {
+        logout()
+      }
+      
     return (
         <ImageBackground source={bg} resizeMode="cover" style={styles.image}>
             <SafeAreaView style={styles.container}>
                 <View style={styles.header}>
                     <View style={styles.headerBtnContainer}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={gotoBack}>
                             <Ionicons name="arrow-back" size={32} color="white"/>
                         </TouchableOpacity>
                     </View>
@@ -65,7 +72,7 @@ export default SettingsScreen = ({ navigation }) => {
 
 
                 <View style={styles.settingsContainer}>
-                    <TouchableOpacity style={styles.settingsContainer2} >
+                    <TouchableOpacity style={styles.settingsContainer2 } onPress = {handleLogout} >
                         <Ionicons name="log-out-outline" size={20} color="white" style={{ paddingRight: 10 }} />
                         <Text style={styles.settingsContent}>Logout</Text>
                     </TouchableOpacity>
