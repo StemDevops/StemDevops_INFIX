@@ -17,6 +17,7 @@ import AuthInput from "../../components/AuthInput"
 import AuthButton from "../../components/AuthButton"
 import Axios from "axios" // Import the axios library for making HTTP requests
 import Ionicons from "@expo/vector-icons/Ionicons";
+import IpAddressFetcher from "../IpAddressFetcher"
 
 const Login = ({ navigation }) => {
   const [uid, setUid] = useState("")
@@ -25,12 +26,13 @@ const Login = ({ navigation }) => {
   const { isAuthenticated, login } = React.useContext(authContext)
 
   const handleLogin = () => {
+    try{
     const loginData = {
       universal_id: uid,
       password: password,
     }
-
-    Axios.post("http://192.168.43.112:3002/user/login", loginData)
+    const ipAddress =  IpAddressFetcher()
+    Axios.post(`http://${ipAddress}:3002/user/login`, loginData)
       .then((response) => {
         // Handle the response from the backend if needed
         if (response.data.approved === true) {
@@ -45,6 +47,10 @@ const Login = ({ navigation }) => {
         console.error("Login error:", error)
       })
 
+  }
+  catch(error){
+    console.log(error)
+  }
   }
 
   const gotoSignup = () => {
