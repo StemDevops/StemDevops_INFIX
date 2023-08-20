@@ -44,6 +44,7 @@ const Login = ({ navigation }) => {
         // Handle errors if the login fails
         console.error("Login error:", error)
       })
+
   }
 
   const gotoSignup = () => {

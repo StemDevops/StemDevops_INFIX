@@ -71,7 +71,48 @@ const ProfileScreen = ({ navigation }) => {
             </View>
           </View>
 
-          <View style={styles.divider}></View>
+    const gotoNotifications = () => {
+        navigation.navigate('Notifications');
+    }
+    const gotoSettings = () => {
+        navigation.navigate('Settings');
+    }
+
+    const gotoMemoryView = () => {
+        console.log("gotoMemoryView");
+        navigation.navigate('MemoryView');
+    }
+    return (
+        <ImageBackground source={bg} resizeMode="cover" style={styles.image}>
+            <SafeAreaView style={styles.container}>
+                <ScrollView style={{width: '100%'}} contentContainerStyle={{alignItems: "center", paddingBottom: 50}}>
+                    <View style={styles.header}>
+                        <View>
+                            <Text style={styles.headertextwelcome}>Josh Peter</Text>
+                        </View>
+                        <View style={styles.headerBtnContainer}>
+                            <TouchableOpacity onPress={gotoNotifications}>
+                                <Ionicons name="heart-outline" size={32} color="white" />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={gotoSettings}>
+                                <Ionicons name="settings-outline" size={32} color="white"/>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <View style={styles.detailSection}>
+                        <Image source={profile} style={styles.profileImg}/>
+                        <View style={styles.profileDetailsContainer}>
+                            <View style={styles.profileDetails}>
+                                <Ionicons name="pricetag-outline" size={25} color="white"/>
+                                <Text style={styles.profileDetailsText}>101 Memories</Text>
+                            </View>
+                            <View style={styles.profileDetails}>
+                                <Ionicons name="medal-outline" size={25} color="white"/>
+                                <Text style={styles.profileDetailsText}>58 Points</Text>
+                            </View>
+                        </View>
+                    </View>
+
 
           <View style={styles.memoryContainer}>
             <Image source={card7} style={styles.memoryImage} />
@@ -137,6 +178,7 @@ const ProfileScreen = ({ navigation }) => {
       </SafeAreaView>
     </ImageBackground>
   )
+
 }
 
 const styles = StyleSheet.create({
