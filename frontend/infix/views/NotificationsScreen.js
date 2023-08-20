@@ -1,18 +1,21 @@
-import {View, Text, TouchableOpacity, SafeAreaView, StyleSheet, ImageBackground, Image, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, SafeAreaView, StyleSheet, ImageBackground, Image, ScrollView, Platform} from 'react-native';
 import React, {useState} from 'react';
-import { Platform } from 'react-native';
 
 import bg from "../assets/Notifications_bg.png";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import profile from "../assets/profile.png";
+import Notification from "../components/Notification";
 
 export default NotificationsScreen = ({ navigation }) => {
-  const [notiHeader, setNotiHeader] = useState('Susan Robert');
-  const [noti, setNoti] = useState('Susan Robert likes your memory on Moon001');
   
   const gotoBack = () => {
     navigation.navigate('Home');
   }
+
+  const [your_notifications, set_your_notifications] = useState([
+    {id: 1, profile: require('../assets/profile2.jpeg'), notiHeader:'Susan Robert', notiContent: 'Susan Robert likes your memory on Moon001',},
+    {id: 2, profile: require('../assets/card13.png'), notiHeader:'Offer', notiContent: '20% offer to Moon 2069',},
+    {id: 3, profile: require('../assets/card3.png'), notiHeader:'Offer', notiContent: '20% offer to ZL 0043',},
+  ])
     return (
       <ImageBackground source={bg} resizeMode="cover" style={styles.image}>
         <SafeAreaView style={styles.container}>
@@ -30,13 +33,16 @@ export default NotificationsScreen = ({ navigation }) => {
           
           <Text style={styles.notiCategory}>Today</Text>
 
-          <View style={styles.notificationContainer}>
-            <Image source={profile} style={styles.profileImg}/>
-            <View style={styles.notificationContainer2} >
-              <Text style={styles.notiHeader}>{notiHeader}</Text>
-              <Text style={styles.noti}>{noti}</Text>
-            </View>
-          </View>
+          <ScrollView style={styles.scrollContainer}>
+              {your_notifications.map((notifi) => (
+                <Notification
+                  key={notifi.id}
+                  profile={notifi.profile}
+                  notiHeader={notifi.notiHeader}
+                  notiContent={notifi.notiContent}
+                />
+              ))}
+            </ScrollView>
 
         </SafeAreaView>
       </ImageBackground>
@@ -77,8 +83,6 @@ export default NotificationsScreen = ({ navigation }) => {
         alignSelf: 'center',
     },
     headerBtnContainer: {
-        justifyContent: 'space-between',
-        flexDirection: 'row',
         marginRight: 40,
     },
     profileImg: {
@@ -105,7 +109,7 @@ export default NotificationsScreen = ({ navigation }) => {
               shadowRadius: 4,
             },
             android: {
-              elevation: 1,
+              elevation: 10,
             },
         })
     },
@@ -129,6 +133,10 @@ export default NotificationsScreen = ({ navigation }) => {
       alignSelf: 'flex-start',
       marginLeft: '15%',
       marginTop: 20,
+    },
+    scrollContainer: {
+      width: "100%",
+      marginTop: 10,
     },
 }
 )

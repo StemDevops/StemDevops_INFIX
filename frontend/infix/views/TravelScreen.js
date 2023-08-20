@@ -60,6 +60,7 @@ const TravelScreen = ({navigation}) => {
 
                 <View style={styles.bodyContainer}>
                     {buttonClicked === "Single" && (
+
                         <SingleTrip navigation={navigation}/>
                     )}
                     {buttonClicked === "Round" && (
@@ -67,6 +68,7 @@ const TravelScreen = ({navigation}) => {
                     )}
                     {buttonClicked === "Multi" && (
                         <MultiTrip navigation={navigation}/>
+
                     )}
                 </View>
             </SafeAreaView>

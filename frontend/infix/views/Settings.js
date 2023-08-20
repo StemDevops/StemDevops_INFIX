@@ -6,7 +6,7 @@ import bg from "../assets/settings_bg.png";
 import profile from "../assets/profile.png";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-export default HelpCenter = ({ navigation }) => {
+export default SettingsScreen = ({ navigation }) => {
     
     const [UID, setUID] = useState('123456789ABCD');
 

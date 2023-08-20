@@ -13,7 +13,6 @@ const BookRoute = require("./routes/BookingRoute.js")
 const DestinationRoute = require("./routes/DestinationRoutes.js")
 const CardRoute = require("./routes/CardRoutes.js")
 
-
 const app = express()
 const { urlencoded } = pkg
 const PORT = process.env.PORT || 3002

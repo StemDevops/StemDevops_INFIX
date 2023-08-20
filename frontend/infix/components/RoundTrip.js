@@ -1,3 +1,4 @@
+
 import {ScrollView, StyleSheet, Text, TouchableOpacity, View, TextInput} from "react-native";
 import InputTextField from "./InputTextField";
 import React, {useState} from "react";
@@ -6,6 +7,7 @@ import ModalSelector from 'react-native-modal-selector'
 
 
 const RoundTrip = ({navigation}) => {
+
 
     const [departure, setDeparture] = useState(null);
     const [destination, setDestination] = useState(null);
@@ -97,6 +99,7 @@ const RoundTrip = ({navigation}) => {
                             isDarkModeEnabled={true}
                             minimumDate={new Date()}
                         />
+
                 </View>
                 <ModalSelector                    
                     style={[styles.inputContainer2, {width: '100%'}]}
@@ -116,6 +119,7 @@ const RoundTrip = ({navigation}) => {
                     onChange={(option)=>{ setTicketCount(option.label)}} />
             </View>
             <TouchableOpacity style={styles.checkoutContainer} onPress={gotoCheckout}>
+
                 <Text style={styles.checkoutText}>
                     Checkout
                 </Text>
@@ -194,6 +198,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
         fontWeight: "bold",
+
     },inputContainer2: {
         width: '45%',
         flexDirection: "row",
@@ -221,6 +226,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         color: "rgb(255,255,255)",
     },
+
 
 });
 export default RoundTrip;
