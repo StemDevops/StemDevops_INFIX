@@ -15,7 +15,7 @@ model Available_Booking {
   end_id                                                             String?            @db.Uuid
   starting_time                                                      DateTime?          @db.Time(6)
   available_seat_count                                               Int
-  starting_date                                                      String?            @db.VarChar(30)
+  starting_date                                                      DateTime?          @db.Date
   local_destination_Available_Booking_end_idTolocal_destination      local_destination? @relation("Available_Booking_end_idTolocal_destination", fields: [end_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.end_id")
   Spaceship                                                          Spaceship?         @relation(fields: [ship_id], references: [ship_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.ship_id")
   local_destination_Available_Booking_starting_idTolocal_destination local_destination? @relation("Available_Booking_starting_idTolocal_destination", fields: [starting_id], references: [local_dest_id], onDelete: NoAction, onUpdate: NoAction, map: "FK_Available Booking.starting_id")
@@ -141,7 +141,8 @@ view booking_view {
   price         Float?
   name          String?    @db.VarChar(20)
   ship_type     ship_type?
-  starting_date String?    @db.VarChar(30)
+  starting_date DateTime?  @db.Date
+  starting_time DateTime?  @db.Time(6)
 
   @@ignore
 }

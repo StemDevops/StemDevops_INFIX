@@ -6,7 +6,8 @@ SELECT
   t3.price,
   t2.name,
   t2.ship_type,
-  t1.starting_date
+  t1.starting_date,
+  t1.starting_time
 FROM
   (
     (

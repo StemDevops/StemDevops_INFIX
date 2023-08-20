@@ -1,7 +1,6 @@
 const {
   getAvailableBookings,
-  createNewBooking,
-  AddBooking,
+  insertOrderAndTicket
 } = require("../services/bookingService")
 const { getLocatioId } = require("../services/locationService")
 
@@ -22,4 +21,18 @@ const booking = async (req, res) => {
   }
 }
 
-module.exports = { booking }
+const placeOrder = async (req, res) => {
+  console.log("placeOrder function")
+  const {booking_id, universal_id, order_time, order_type, ship_type, ticket_count} = req.body
+  const result = await insertOrderAndTicket(booking_id, universal_id, order_time, order_type, ship_type, ticket_count)
+
+    if (result) {
+    console.log("confirmed")
+    console.log(result)
+    return res.send({ approved: true })
+  }
+
+}
+
+
+module.exports = { booking,placeOrder }
