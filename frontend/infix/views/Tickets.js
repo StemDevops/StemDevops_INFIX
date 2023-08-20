@@ -1,15 +1,21 @@
-import {View, Text, TouchableOpacity, SafeAreaView, StyleSheet, ImageBackground, Image, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity,LayoutAnimation, SafeAreaView, StyleSheet, ImageBackground, Image, ScrollView, TouchableWithoutFeedback, Animated, Platform} from 'react-native';
 import React, {useState} from 'react';
-import { Platform } from 'react-native';
 
 import bg from "../assets/Notifications_bg.png";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import planetPic from "../assets/card2.jpg";
+import TicketCard from '../components/TicketCard';
 
-export default Tickets = ({ navigation }) => {
-  const [travelTo, settravelTo] = useState('Moon 001');
-  const [details, setdetails] = useState('Susan Robert likes your memory on Moon001');
-  
+const Tickets = ({ navigation }) => {
+
+  const [your_tickets, set_your_tickets] = useState([
+    {id: 1, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
+    {id: 2, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
+    {id: 3, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
+    {id: 4, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
+    {id: 5, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
+    {id: 6, travelTo: "Moon 0001", travelFrom:'MZ 0054', ticketCount: '3',shipType: 'Air Bus',ticketID: '2901-9493-2322',date:'2166-02-17', imageSource: require('../assets/card2.jpg')},
+  ])
   const gotoBack = () => {
     navigation.navigate('Home');
   }
@@ -27,18 +33,23 @@ export default Tickets = ({ navigation }) => {
               <Text style={styles.headertext}>Your Tickets</Text>
             </View>
           </View>
-          
+            
             <ScrollView style={styles.scrollContainer}>
+            {your_tickets.map((ticket) => (
+              <TicketCard
+                key={ticket.id}
+                travelTo={ticket.travelTo}
+                travelFrom={ticket.travelFrom}
+                ticketCount={ticket.ticketCount}
+                shipType={ticket.shipType}
+                ticketID={ticket.ticketID}
+                date={ticket.date}
+                imageSource={ticket.imageSource}
+              />
+      ))}
+            
+              
 
-                <View style={styles.ticketContainer}>
-
-                    <Image source={planetPic} style={styles.planetPic}/>
-                    <View style={styles.notificationContainer2} >
-                        <Text style={styles.travelTo}>{travelTo}</Text>
-                        <Text style={styles.noti}>{details}</Text>
-                    </View>
-
-                </View>
 
             </ScrollView>
 
@@ -47,6 +58,7 @@ export default Tickets = ({ navigation }) => {
       </ImageBackground>
     )
   }
+export default Tickets;
 
   const styles = StyleSheet.create({
     container: {
@@ -87,49 +99,6 @@ export default Tickets = ({ navigation }) => {
     scrollContainer: {
         width: "100%",
         marginTop: 10,
-      },
-      ticketContainer:{
-        alignSelf: 'center',
-        width: '90%',
-        margin: 12,
-        padding: 10,
-        backgroundColor: 'rgba(44, 93, 135, 1)',
-        borderRadius: 25,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        ...Platform.select({
-            ios: {
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 1 },
-              shadowOpacity: 0.25,
-              shadowRadius: 4,
-            },
-            android: {
-              elevation: 10,
-            },
-        })
-      },
-      planetPic:{
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        marginRight: 15,
-      },
-      notificationContainer2: {
-        padding: 5,
-        marginRight: 10,
-        justifyContent: 'flex-start',
-    },
-    
-    travelTo:{
-        color: '#ffffff',
-        fontSize: 18,
-        fontWeight: 'bold',
-      },
-      noti:{
-          color: '#ffffff',
-          fontSize: 12,
-      },
-      
+      },   
 }
 )
