@@ -4,7 +4,12 @@ const search = async (req, res) => {
   const searchEntry = req.query.searchEntry
   console.log(searchEntry)
   const destinations = await getDestination(searchEntry)
-  if (destinations) {
+  if(searchEntry == ""){
+    console.log("Query successful")
+    console.log(destinations)
+    return res.send({ destinations: [] })
+  }
+  else if (destinations ) {
     console.log("Query successful")
     console.log(destinations)
     return res.send({ destinations: destinations })
