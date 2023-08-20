@@ -22,6 +22,7 @@ async function insertOrderAndTicket(
       booking_id: booking_id, // Use the appropriate booking ID
     })
 
+
     console.log(ticketDataArray)
 
     const createdOrder = await prisma.order.create({
