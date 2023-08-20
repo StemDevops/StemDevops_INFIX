@@ -3,20 +3,10 @@ const { PrismaClient } = require("@prisma/client")
 const prisma = new PrismaClient()
 
 const getAvailableBookings = async (starting_id, end_id, starting_date) => {
-  const shipPrices = await prisma.$queryRaw(starting_id,end_id,starting_date)`
-    SELECT *
-    FROM booking_view
-    WHERE starting_id = $1 AND end_id = $2 AND starting_date = $3;
-  `
+  const rawQuery = prisma.$queryRaw`SELECT * FROM booking_view WHERE starting_id = ${starting_id}::uuid AND end_id = ${end_id}::uuid AND starting_date = ${starting_date};`
 
-  const shipDetail = await prisma.$queryRaw(
-    query,
-    starting_id,
-    end_id,
-    starting_date
-  )
-
-  return shipDetail
+  const result = await rawQuery
+  return result
 }
 
 module.exports = { getAvailableBookings }
