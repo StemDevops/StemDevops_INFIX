@@ -29,13 +29,6 @@ const SingleTrip = ({navigation}) => {
 
         ]);
 
-    const pickerRef = React.useRef();
-
-    const showTravelModePicker = () => {
-        console.log("showing picker");
-        pickerRef.current.focus();
-
-    };
 
     const gotoCheckout =()=>{
         if(departureDate==null || departure==null || destination==null || travelMode==null || ticketCount==null){
@@ -129,7 +122,7 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         width: '90%',
-        // alignItems: 'center',
+        alignItems: 'center',
         marginTop: 20,
 
     },

@@ -2,15 +2,17 @@ import {ScrollView, StyleSheet, Text, TouchableOpacity, View, TextInput} from "r
 import InputTextField from "./InputTextField";
 import React, {useState} from "react";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import ModalSelector from 'react-native-modal-selector'
+
 
 const RoundTrip = ({navigation}) => {
 
-    const [departure, setDeparture] = useState("");
-    const [destination, setDestination] = useState("");
-    const [departureDate, setDepartureDate] = useState("");
-    const [arrivalDate, setArrivalDate] =useState("")
-    const [travelMode, setTravelMode] = useState("Spaceship");
-    const [ticketCount, setTicketCount] = useState(1);
+    const [departure, setDeparture] = useState(null);
+    const [destination, setDestination] = useState(null);
+    const [departureDate, setDepartureDate] = useState(null);
+    const [arrivalDate, setArrivalDate] =useState(null)
+    const [travelMode, setTravelMode] = useState(null);
+    const [ticketCount, setTicketCount] = useState(null);
     const [isDepDatePickerVisible, setDepDatePickerVisibility] = useState(false);
     const [isArrDatePickerVisible, setArrDatePickerVisibility] = useState(false);
     const [travelModes, setTravelModes] = useState([
@@ -30,6 +32,10 @@ const RoundTrip = ({navigation}) => {
         ]);
 
     const gotoCheckout =()=>{
+        if(departureDate==null || departure==null || destination==null || travelMode==null || ticketCount==null || arrivalDate==null){
+            alert("Please fill all the fields");
+            return;
+        }
         navigation.navigate('Checkout');
     }
 
@@ -69,12 +75,12 @@ const RoundTrip = ({navigation}) => {
                 <InputTextField placeholder="Destination" action={setDestination} value={destination}/>
                 <View style={styles.dateContainer}>
                         <TouchableOpacity style={styles.inputContainer2} onPress={showDepDatePicker} >
-                            <TextInput placeholderTextColor={"#fff"} pointerEvents="none" style={styles.input} selectTextOnFocus={false} editable={false} placeholder="Departure Date" value={setDepartureDate}/>
+                            <TextInput placeholderTextColor={"#fff"} pointerEvents="none" style={styles.input} selectTextOnFocus={false} editable={false} placeholder="Departure Date" value={departureDate}/>
                         </TouchableOpacity>
                         <DateTimePickerModal
                             isVisible={isDepDatePickerVisible}
                             mode="date"
-                            onConfirm={handleDepConfirm}
+                            onConfirm={handleDepConfirm }
                             onCancel={hideDepDatePicker}
                             isDarkModeEnabled={true}
                             minimumDate={new Date()}
@@ -92,8 +98,22 @@ const RoundTrip = ({navigation}) => {
                             minimumDate={new Date()}
                         />
                 </View>
-                <InputTextField value="Travel mode"/>
-                <InputTextField value="Ticket count"/>
+                <ModalSelector                    
+                    style={[styles.inputContainer2, {width: '100%'}]}
+                    data={travelModes}
+                    initValue="Travel Mode"
+                    initValueTextStyle={{color: '#fff', fontSize: 16, fontWeight: 'bold', }}
+                    selectStyle={{borderColor: 'transparent'}}
+                    selectTextStyle={{color: '#fff', fontSize: 16, fontWeight: 'bold', }}
+                    onChange={(option)=>{ setTravelMode(option.label)}} />
+                <ModalSelector                
+                    style={[styles.inputContainer2, {width: '100%'}]}
+                    data={tickets}
+                    initValue="Number of tickets"
+                    initValueTextStyle={{color: '#fff', fontSize: 16, fontWeight: 'bold', }}
+                    selectStyle={{borderColor: 'transparent'}}
+                    selectTextStyle={{color: '#fff', fontSize: 16, fontWeight: 'bold', }}
+                    onChange={(option)=>{ setTicketCount(option.label)}} />
             </View>
             <TouchableOpacity style={styles.checkoutContainer} onPress={gotoCheckout}>
                 <Text style={styles.checkoutText}>
@@ -175,7 +195,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
     },inputContainer2: {
-        width: '48%',
+        width: '45%',
         flexDirection: "row",
         alignItems: "center",
         marginHorizontal: 10,
