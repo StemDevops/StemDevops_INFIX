@@ -8,7 +8,6 @@ Welcome to INFIX, the ticket booking app for interplanetary travel in the year 2
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
-- [Contributing](#contributing)
 - [Contact](#contact)
 
 ## Getting Started
@@ -34,19 +33,15 @@ To get started with INFIX, follow these steps to set up the development environm
 ## API Documentation
 For details on the API endpoints and how to interact with the server, refer to the API documentation provided in the `server` folder.
 
-## Contributing
-We welcome contributions from the community to improve and enhance INFIX. To contribute:
-- Fork this repository and create a new branch.
-- Make your changes and test thoroughly.
-- Submit a pull request, describing your changes and their benefits.
   
 ## Contributors
-We extend our heartfelt appreciation to the following contributors who have helped shape and improve the INFIX project:
-- [Samith Karunathilake](https://github.com/contributor1)
-- [Contributor 2](https://github.com/contributor2)
-- [Contributor 3](https://github.com/contributor3)
-- [Contributor 3](https://github.com/contributor3)
+Team Members of StemDevops:
+- [Samith Karunathilake](https://github.com/samithkavishke)
+- [Thejan Weerasekara](https://github.com/ThejanB)
+- [Chandima Ekanayake](https://github.com/ChandimaEkanayake)
+- [Milan Swanthra](https://github.com/wkmilanswanthra)
+- [Mahesh Chandrasena](https://github.com/maheshdila)
 - [Omalya Vidushini](https://github.com/OmalyaV)
 
 ## Contact
-For any inquiries or support, please contact the Team StemDevops at [INSERT CONTACT EMAIL].
+For any inquiries or support, please contact Team StemDevops at [stemdevops.techtriathlon@gmail.com].
