@@ -16,7 +16,7 @@ import Logo from "../../assets/Logo.png"
 import AuthInput from "../../components/AuthInput"
 import AuthButton from "../../components/AuthButton"
 import Axios from "axios" // Import the axios library for making HTTP requests
-import Ionicons from "@expo/vector-icons/Ionicons";
+import Ionicons from "@expo/vector-icons/Ionicons"
 
 const Login = ({ navigation }) => {
   const [uid, setUid] = useState("")
@@ -30,7 +30,7 @@ const Login = ({ navigation }) => {
       password: password,
     }
 
-    Axios.post("http://192.168.43.112:3002/user/login", loginData)
+    Axios.post("http://192.168.8.165:3002/user/login", loginData)
       .then((response) => {
         // Handle the response from the backend if needed
         if (response.data.approved === true) {
@@ -44,7 +44,6 @@ const Login = ({ navigation }) => {
         // Handle errors if the login fails
         console.error("Login error:", error)
       })
-
   }
 
   const gotoSignup = () => {
@@ -58,12 +57,11 @@ const Login = ({ navigation }) => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <SafeAreaView style={styles.container}>
-
-        <View style={styles.BtnContainer}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons name="arrow-back" size={32} color="white"/>
-          </TouchableOpacity>
-        </View>
+          <View style={styles.BtnContainer}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Ionicons name="arrow-back" size={32} color="white" />
+            </TouchableOpacity>
+          </View>
 
           <Image style={styles.globe} source={Globe} />
           <View style={styles.headerContainer}>
@@ -142,12 +140,12 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     marginBottom: 30,
   },
-  
+
   BtnContainer: {
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     margin: 30,
     marginBottom: 0,
-},
+  },
   buttonContainer: {
     width: "80%",
     alignItems: "center",
